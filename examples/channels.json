@@ -3,10 +3,10 @@
     {
       "id": "hack-fraud-tv",
       "name": "HACK FRAUD TV",
-      "dial": 300,
+      "dial": 900,
       "color": "#E53935",
       "family": "comedy",
-      "fit": "crop",
+      "fit": "letterbox",
       "mid_break_minutes": 8,
       "description": "RedLetterMedia around the clock: Best of the Worst, re:View and Mr. Plinkett's reviews, with bump cards and 80s and 90s commercials. A fan channel, not affiliated with RedLetterMedia.",
       "youtube": {
@@ -14,16 +14,20 @@
         "shows": [
           {
             "name": "Best of the Worst",
-            "order": "oldest-first",
             "playlists": [
-              "https://www.youtube.com/playlist?list=PLJ_TJFLc25JR3VZ7Xe-cmt4k3bMKBZ5Tm"
+              {
+                "url": "https://www.youtube.com/playlist?list=PLJ_TJFLc25JR3VZ7Xe-cmt4k3bMKBZ5Tm",
+                "order": "oldest-first"
+              }
             ]
           },
           {
             "name": "re:View",
-            "order": "oldest-first",
             "playlists": [
-              "https://www.youtube.com/playlist?list=PLJ_TJFLc25JSmtBkyIYqgD5KabbU57yzY"
+              {
+                "url": "https://www.youtube.com/playlist?list=PLJ_TJFLc25JSmtBkyIYqgD5KabbU57yzY",
+                "order": "oldest-first"
+              }
             ]
           },
           {
@@ -1233,60 +1237,6 @@
           "source": "archive.org",
           "license": "by",
           "license_version": "4.0"
-        },
-        {
-          "filename": "kevin-macleod-ready-aim-fire.mp3",
-          "title": "Ready Aim Fire",
-          "artist": "Kevin MacLeod",
-          "license": "by"
-        },
-        {
-          "filename": "shane-ivers-sports-fm.mp3",
-          "title": "Sports FM",
-          "artist": "Shane Ivers",
-          "license": "by"
-        },
-        {
-          "filename": "shane-ivers-hard-sell-hotel.mp3",
-          "title": "Hard Sell Hotel",
-          "artist": "Shane Ivers",
-          "license": "by"
-        },
-        {
-          "filename": "shane-ivers-apple-for-the-preacher.mp3",
-          "title": "Apple For The Preacher",
-          "artist": "Shane Ivers",
-          "license": "by"
-        },
-        {
-          "filename": "nathan-hall-cyber-world.mp3",
-          "title": "Cyber World",
-          "artist": "Nathan Hall",
-          "license": "by"
-        },
-        {
-          "filename": "nathan-hall-uber-incursion.mp3",
-          "title": "Uber Incursion",
-          "artist": "Nathan Hall",
-          "license": "by"
-        },
-        {
-          "filename": "the-kyoto-connection-wake-up-2016-tech-noir.mp3",
-          "title": "Wake Up (2016 Tech noir)",
-          "artist": "The Kyoto Connection",
-          "license": "by"
-        },
-        {
-          "filename": "stickster-hyperdrive-cruise.mp3",
-          "title": "Hyperdrive Cruise",
-          "artist": "Stickster",
-          "license": "by-sa"
-        },
-        {
-          "filename": "loyalty-freak-music-ghost-surf-rock.mp3",
-          "title": "Ghost Surf Rock",
-          "artist": "Loyalty Freak Music",
-          "license": "by"
         }
       ],
       "network_music": [
@@ -1425,41 +1375,722 @@
           "source": "archive.org",
           "license": "by",
           "license_version": "2.0"
-        },
-        {
-          "filename": "boguscollective-magic-touch.mp3",
-          "title": "Magic Touch",
-          "artist": "Boguscollective",
-          "license": "by"
-        },
-        {
-          "filename": "astromegamusic-the-mec-monroe-freestyle-flip.mp3",
-          "title": "The Mec Monroe Freestyle Flip",
-          "artist": "Astromegamusic",
-          "license": "by"
-        },
-        {
-          "filename": "astromegamusic-kyahs-jazzz.mp3",
-          "title": "Kyahs Jazzz",
-          "artist": "Astromegamusic",
-          "license": "by"
-        },
-        {
-          "filename": "bvftg-1993-toyota-corolla.mp3",
-          "title": "1993 Toyota Corolla",
-          "artist": "Bvftg",
-          "license": "by"
         }
       ],
       "card_seconds": 20,
-      "vhs": [
-        "shows"
+      "vhs": []
+    },
+    {
+      "id": "lgr",
+      "name": "LGR",
+      "dial": 903,
+      "color": "#008000",
+      "family": "comedy",
+      "fit": "letterbox",
+      "card_seconds": 20,
+      "mid_break_minutes": 5,
+      "description": "LGR: Coverage of retro tech, PC gaming, and more! Classic computers, Oddware, games, thrifting, Tech Tales, etc",
+      "youtube": {
+        "breaks": "sponsorblock",
+        "shows": [
+          {
+            "name": "Lazy Game Reviews - Official Playlist Pt. 1",
+            "playlists": [
+              {
+                "url": "https://www.youtube.com/playlist?list=PL3BC2ECCF73B81434",
+                "order": "playlist"
+              }
+            ]
+          },
+          {
+            "name": "LGR - Official Playlist Pt. 2",
+            "playlists": [
+              {
+                "url": "https://www.youtube.com/playlist?list=PLFE883AFC0FEC1358",
+                "order": "playlist"
+              }
+            ]
+          },
+          {
+            "name": "LGR Official Playlist Part 3",
+            "playlists": [
+              {
+                "url": "https://www.youtube.com/playlist?list=PLbBZM9aUMsjHoH9SLxbYjeP4iMtZZgPiY",
+                "order": "playlist"
+              }
+            ]
+          },
+          {
+            "name": "LGR Thrifts",
+            "playlists": [
+              {
+                "url": "https://www.youtube.com/playlist?list=PLbBZM9aUMsjEM76RFMofBZmDBuqNPnCdt",
+                "order": "playlist"
+              }
+            ]
+          }
+        ],
+        "title_strip": "\\s*/{2,}\\s*LGR*\\s*$",
+        "skip": []
+      },
+      "logomark": {
+        "type": "pixel",
+        "rows": [
+          "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+          "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+          "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+          "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+          "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+          "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+          "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+          "bccaaaacaaacaaaaaaaaaaaaaacaadaa",
+          "aeffffgaaaaaabhffffiaceffffffeaa",
+          "ghjkkjgaaaaaaelkjkkddbmkkkjjjnga",
+          "gemkkmaaaaaaamjonmlmgbhokjnmjoea",
+          "gankkeaaaaaaolhegehliaamkjahlpha",
+          "gankkeaaaaabllcaaaalgaamkjahlpha",
+          "gankkeaaaaabllcaaaadaaamkjchljha",
+          "gankkeaaaaabllcaaaaaaaamklnmloea",
+          "gankkeaaaaabllchmmmmaaamkjmkknaa",
+          "cankkeaaaaablldnkjjliaamkjekpnia",
+          "iankkeaaaaabllcbemlliaamkjbnllha",
+          "dankkeachhabllcacnlliaamkjahlpha",
+          "cankkeabmmabolhecnlliaamkjahlpha",
+          "dinkkedhjmaadjjmgnlliagmkjahlpha",
+          "ceokkmmmkmaaamlommnlibfokjahlpha",
+          "dennnnnnnhaaabfnnhbngchnnnaennea",
+          "bdcccccibccacabccddcgdddccdgdcdi",
+          "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+          "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+          "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+          "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+          "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+          "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+          "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+          "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+        ],
+        "palette": {
+          "a": "#008c00",
+          "b": "#018f00",
+          "c": "#008d01",
+          "d": "#008c01",
+          "e": "#019902",
+          "f": "#00af01",
+          "g": "#018b02",
+          "h": "#02a702",
+          "i": "#018c00",
+          "j": "#03fd02",
+          "k": "#00ff01",
+          "l": "#01fa02",
+          "m": "#02ca02",
+          "n": "#01b801",
+          "o": "#02ea02",
+          "p": "#00ff00"
+        }
+      },
+      "ads": {
+        "years": [
+          1980,
+          1999
+        ],
+        "exclude": "jpcm|ytchannel1|japan|angels-egg|bandai|anime|adv-films|[\\u3040-\\u30ff\\u4e00-\\u9fff]",
+        "boost": "trailer|preview|coming.?attraction|opening.?to|vhs|theatrical|tv.?spot|movie|feature.?presentation|rental|blockbuster",
+        "boost_weight": 3
+      },
+      "bumps": [
+        {
+          "id": "lgr-001",
+          "show": "Lazy Game Reviews - Official Playlist Pt. 1",
+          "slides": [
+            {
+              "text": "wood grain texture."
+            },
+            {
+              "text": "maximum cozy."
+            },
+            {
+              "text": "lazy game reviews."
+            }
+          ]
+        },
+        {
+          "id": "lgr-002",
+          "show": "Lazy Game Reviews - Official Playlist Pt. 1",
+          "slides": [
+            {
+              "text": "let's look at some old software."
+            },
+            {
+              "text": "from a thrift store."
+            },
+            {
+              "text": "lazy game reviews."
+            }
+          ]
+        },
+        {
+          "id": "lgr-003",
+          "show": "Lazy Game Reviews - Official Playlist Pt. 1",
+          "slides": [
+            {
+              "text": "ibm compatibilities."
+            },
+            {
+              "text": "sound blaster 16."
+            },
+            {
+              "text": "lazy game reviews."
+            }
+          ]
+        },
+        {
+          "id": "lgr-004",
+          "show": "Lazy Game Reviews - Official Playlist Pt. 1",
+          "slides": [
+            {
+              "text": "unpacking a weird box."
+            },
+            {
+              "text": "found in a kentucky basement."
+            },
+            {
+              "text": "lazy game reviews."
+            }
+          ]
+        },
+        {
+          "id": "lgr-005",
+          "show": "Lazy Game Reviews - Official Playlist Pt. 1",
+          "slides": [
+            {
+              "text": "oddware detected."
+            },
+            {
+              "text": "proceed with caution."
+            },
+            {
+              "text": "lazy game reviews."
+            }
+          ]
+        },
+        {
+          "id": "lgr-006",
+          "show": "LGR - Official Playlist Pt. 2",
+          "slides": [
+            {
+              "text": "the 90s pc experience."
+            },
+            {
+              "text": "now streaming live."
+            },
+            {
+              "text": "lazy game reviews."
+            }
+          ]
+        },
+        {
+          "id": "lgr-007",
+          "show": "LGR - Official Playlist Pt. 2",
+          "slides": [
+            {
+              "text": "greetings."
+            },
+            {
+              "text": "clint here."
+            },
+            {
+              "text": "lazy game reviews."
+            }
+          ]
+        },
+        {
+          "id": "lgr-008",
+          "show": "LGR - Official Playlist Pt. 2",
+          "slides": [
+            {
+              "text": "simcity build journal."
+            },
+            {
+              "text": "things are going well."
+            },
+            {
+              "text": "(everything is on fire.)"
+            },
+            {
+              "text": "lazy game reviews."
+            }
+          ]
+        },
+        {
+          "id": "lgr-009",
+          "show": "LGR - Official Playlist Pt. 2",
+          "slides": [
+            {
+              "text": "floppy disk week."
+            },
+            {
+              "text": "hope the magnetic layer holds."
+            },
+            {
+              "text": "lazy game reviews."
+            }
+          ]
+        },
+        {
+          "id": "lgr-010",
+          "show": "LGR Thrifts",
+          "slides": [
+            {
+              "text": "checking out a thrift store find."
+            },
+            {
+              "text": "it smells like 1994."
+            },
+            {
+              "text": "lazy game reviews."
+            }
+          ]
+        }
+      ],
+      "network_bumps": [
+        {
+          "id": "lgrn-01",
+          "show": "LGR Official Playlist Part 3",
+          "slides": [
+            {
+              "text": "dos games."
+            },
+            {
+              "text": "midi music playing."
+            },
+            {
+              "text": "life is good."
+            },
+            {
+              "text": "lazy game reviews."
+            }
+          ]
+        },
+        {
+          "id": "lgrn-02",
+          "show": "LGR Official Playlist Part 3",
+          "slides": [
+            {
+              "text": "that's neat."
+            },
+            {
+              "text": "literally."
+            },
+            {
+              "text": "lazy game reviews."
+            }
+          ]
+        },
+        {
+          "id": "lgrn-03",
+          "show": "LGR Official Playlist Part 3",
+          "slides": [
+            {
+              "text": "plugging in a joystick"
+            },
+            {
+              "text": "via the game port."
+            },
+            {
+              "text": "lazy game reviews."
+            }
+          ]
+        },
+        {
+          "id": "lgrn-04",
+          "show": "LGR Official Playlist Part 3",
+          "slides": [
+            {
+              "text": "the manual was thicker than the game."
+            },
+            {
+              "text": "good times."
+            },
+            {
+              "text": "lazy game reviews."
+            }
+          ]
+        },
+        {
+          "id": "lgrn-05",
+          "show": "LGR Thrifts",
+          "slides": [
+            {
+              "text": "cleaning yellowed plastic."
+            },
+            {
+              "text": "retrobrite applied."
+            },
+            {
+              "text": "lazy game reviews."
+            }
+          ]
+        },
+        {
+          "id": "lgrn-06",
+          "show": "LGR Official Playlist Part 3",
+          "slides": [
+            {
+              "text": "testing out a weird peripheral."
+            },
+            {
+              "text": "it did not sell well."
+            },
+            {
+              "text": "lazy game reviews."
+            }
+          ]
+        },
+        {
+          "id": "lgrn-07",
+          "show": "Lazy Game Reviews - Official Playlist Pt. 1",
+          "slides": [
+            {
+              "text": "windows 95 startup chime."
+            },
+            {
+              "text": "cue nostalgia."
+            },
+            {
+              "text": "lazy game reviews."
+            }
+          ]
+        },
+        {
+          "id": "lgrn-08",
+          "show": "LGR Thrifts",
+          "slides": [
+            {
+              "text": "opening a big box pc game."
+            },
+            {
+              "text": "smell the cardboard."
+            },
+            {
+              "text": "lazy game reviews."
+            }
+          ]
+        },
+        {
+          "id": "lgrn-09",
+          "show": "Lazy Game Reviews - Official Playlist Pt. 1",
+          "slides": [
+            {
+              "text": "maximum frame rates."
+            },
+            {
+              "text": "on a 486."
+            },
+            {
+              "text": "lazy game reviews."
+            }
+          ]
+        },
+        {
+          "id": "lgrn-10",
+          "show": "LGR - Official Playlist Pt. 2",
+          "slides": [
+            {
+              "text": "you've been watching tech and games"
+            },
+            {
+              "text": "for hours."
+            },
+            {
+              "text": "time to check out some more oddware."
+            },
+            {
+              "text": "lazy game reviews."
+            }
+          ]
+        }
+      ],
+      "music": [
+        {
+          "file": "music/kevin-macleod-eighties-action.mp3",
+          "title": "Eighties Action",
+          "artist": "Kevin MacLeod",
+          "source": "incompetech.com",
+          "license": "by",
+          "license_version": "4.0"
+        },
+        {
+          "file": "music/kevin-macleod-monster-promenade.mp3",
+          "title": "Monster Promenade",
+          "artist": "Kevin MacLeod",
+          "source": "incompetech.com",
+          "license": "by",
+          "license_version": "4.0"
+        },
+        {
+          "file": "music/kevin-macleod-graveyard-shift.mp3",
+          "title": "Graveyard Shift",
+          "artist": "Kevin MacLeod",
+          "source": "incompetech.com",
+          "license": "by",
+          "license_version": "4.0"
+        },
+        {
+          "file": "music/kevin-macleod-cut-and-run.mp3",
+          "title": "Cut and Run",
+          "artist": "Kevin MacLeod",
+          "source": "incompetech.com",
+          "license": "by",
+          "license_version": "4.0"
+        },
+        {
+          "file": "music/kevin-macleod-volatile-reaction.mp3",
+          "title": "Volatile Reaction",
+          "artist": "Kevin MacLeod",
+          "source": "incompetech.com",
+          "license": "by",
+          "license_version": "4.0"
+        },
+        {
+          "file": "music/lazerhawk-escape-from-germany.mp3",
+          "title": "Escape From Germany",
+          "artist": "Lazerhawk",
+          "source": "archive.org",
+          "license": "by-sa",
+          "license_version": "3.0"
+        },
+        {
+          "file": "music/irving-force-back-alley-creepers.mp3",
+          "title": "Back Alley Creepers",
+          "artist": "Irving Force",
+          "source": "archive.org",
+          "license": "by-sa",
+          "license_version": "3.0"
+        },
+        {
+          "file": "music/gunship-pink-mist.mp3",
+          "title": "Pink Mist",
+          "artist": "GUNSHIP",
+          "source": "archive.org",
+          "license": "by-sa",
+          "license_version": "3.0"
+        },
+        {
+          "file": "music/vhs-glitch-he-sees-you.mp3",
+          "title": "He Sees You",
+          "artist": "VHS Glitch",
+          "source": "archive.org",
+          "license": "by-sa",
+          "license_version": "3.0"
+        },
+        {
+          "file": "music/airglow-electrifying-landscape.mp3",
+          "title": "Electrifying Landscape",
+          "artist": "AIRGLOW",
+          "source": "archive.org",
+          "license": "by",
+          "license_version": "3.0"
+        },
+        {
+          "file": "music/airglow-memory-bank.mp3",
+          "title": "Memory Bank",
+          "artist": "AIRGLOW",
+          "source": "archive.org",
+          "license": "by",
+          "license_version": "3.0"
+        },
+        {
+          "file": "music/timecrawler-82-driving-in-the-rain.mp3",
+          "title": "Driving in the Rain",
+          "artist": "Timecrawler 82",
+          "source": "archive.org",
+          "license": "by",
+          "license_version": "4.0"
+        },
+        {
+          "file": "music/timecrawler-82-street-dancing.mp3",
+          "title": "Street Dancing",
+          "artist": "Timecrawler 82",
+          "source": "archive.org",
+          "license": "by",
+          "license_version": "4.0"
+        },
+        {
+          "file": "music/telematix-last-train-to-nowhere.mp3",
+          "title": "Last Train To Nowhere",
+          "artist": "Telematix",
+          "source": "archive.org",
+          "license": "by-sa",
+          "license_version": "3.0"
+        },
+        {
+          "file": "music/telematix-flashback.mp3",
+          "title": "Flashback",
+          "artist": "Telematix",
+          "source": "archive.org",
+          "license": "by-sa",
+          "license_version": "3.0"
+        },
+        {
+          "file": "music/mach-man-mini-cool-runningz.mp3",
+          "title": "Cool Runningz",
+          "artist": "Mach-Man Mini",
+          "source": "archive.org",
+          "license": "by",
+          "license_version": "4.0"
+        },
+        {
+          "file": "music/rolemusic-the-great-madeja.mp3",
+          "title": "The Great Madeja",
+          "artist": "rolemusic",
+          "source": "archive.org",
+          "license": "by",
+          "license_version": "4.0"
+        }
+      ],
+      "network_music": [
+        {
+          "file": "music/kevin-macleod-local-forecast-elevator.mp3",
+          "title": "Local Forecast - Elevator",
+          "artist": "Kevin MacLeod",
+          "source": "incompetech.com",
+          "license": "by",
+          "license_version": "4.0"
+        },
+        {
+          "file": "music/kevin-macleod-local-forecast.mp3",
+          "title": "Local Forecast",
+          "artist": "Kevin MacLeod",
+          "source": "incompetech.com",
+          "license": "by",
+          "license_version": "4.0"
+        },
+        {
+          "file": "music/kevin-macleod-on-hold-for-you.mp3",
+          "title": "On Hold for You",
+          "artist": "Kevin MacLeod",
+          "source": "incompetech.com",
+          "license": "by",
+          "license_version": "4.0"
+        },
+        {
+          "file": "music/kevin-macleod-presenterator.mp3",
+          "title": "Presenterator",
+          "artist": "Kevin MacLeod",
+          "source": "incompetech.com",
+          "license": "by",
+          "license_version": "4.0"
+        },
+        {
+          "file": "music/kevin-macleod-leopard-print-elevator.mp3",
+          "title": "Leopard Print Elevator",
+          "artist": "Kevin MacLeod",
+          "source": "incompetech.com",
+          "license": "by",
+          "license_version": "4.0"
+        },
+        {
+          "file": "music/kevin-macleod-disco-lounge.mp3",
+          "title": "Disco Lounge",
+          "artist": "Kevin MacLeod",
+          "source": "incompetech.com",
+          "license": "by",
+          "license_version": "4.0"
+        },
+        {
+          "file": "music/2003-toyota-corolla-2003-toyota-corolla.mp3",
+          "title": "2003 Toyota Corolla",
+          "artist": "2003 Toyota Corolla",
+          "source": "archive.org",
+          "license": "by-sa",
+          "license_version": "4.0"
+        },
+        {
+          "file": "music/2003-toyota-corolla-2004-toyota-corolla.mp3",
+          "title": "2004 Toyota Corolla",
+          "artist": "2003 Toyota Corolla",
+          "source": "archive.org",
+          "license": "by-sa",
+          "license_version": "4.0"
+        },
+        {
+          "file": "music/ilikestapler-dilbert-2.mp3",
+          "title": "dilbert 2",
+          "artist": "ILikeStapler",
+          "source": "archive.org",
+          "license": "by",
+          "license_version": "4.0"
+        },
+        {
+          "file": "music/juice-plus-how-many-ohms-you-got.mp3",
+          "title": "how many ohms you got",
+          "artist": "JUICE PLUS",
+          "source": "archive.org",
+          "license": "by",
+          "license_version": "4.0"
+        },
+        {
+          "file": "music/thought-pyramid-endless.mp3",
+          "title": "Endless",
+          "artist": "Thought Pyramid",
+          "source": "archive.org",
+          "license": "by",
+          "license_version": "2.0"
+        },
+        {
+          "file": "music/thought-pyramid-morning-cup.mp3",
+          "title": "Morning Cup",
+          "artist": "Thought Pyramid",
+          "source": "archive.org",
+          "license": "by",
+          "license_version": "2.0"
+        },
+        {
+          "file": "music/dr-tuxedo-electric-blue.mp3",
+          "title": "Electric Blue",
+          "artist": "Dr. Tuxedo",
+          "source": "archive.org",
+          "license": "by",
+          "license_version": "3.0"
+        },
+        {
+          "file": "music/dr-tuxedo-groove-factory.mp3",
+          "title": "Groove Factory",
+          "artist": "Dr. Tuxedo",
+          "source": "archive.org",
+          "license": "by",
+          "license_version": "3.0"
+        },
+        {
+          "file": "music/deadman-digi-hartatak-elevatored.mp3",
+          "title": "Elevatored",
+          "artist": "Deadman & Digi Hartatak",
+          "source": "archive.org",
+          "license": "by",
+          "license_version": "3.0"
+        },
+        {
+          "file": "music/mach-man-mini-please-hold.mp3",
+          "title": "Please Hold",
+          "artist": "Mach-Man Mini",
+          "source": "archive.org",
+          "license": "by",
+          "license_version": "4.0"
+        },
+        {
+          "file": "music/thought-pyramid-quad-cities.mp3",
+          "title": "Quad Cities",
+          "artist": "Thought Pyramid",
+          "source": "archive.org",
+          "license": "by",
+          "license_version": "2.0"
+        }
       ]
     },
     {
       "id": "eistv",
       "name": "EISTV",
-      "dial": 301,
+      "dial": 901,
       "color": "#e8457c",
       "family": "comedy",
       "fit": "letterbox",
@@ -1475,259 +2106,388 @@
           {
             "name": "EIT KIDZ KLUB: THE MOVIE!",
             "playlists": [
-              "https://www.youtube.com/playlist?list=PLGAdbivd-Y84dZgxeqSw7o75V6f9gS20r"
+              {
+                "url": "https://www.youtube.com/playlist?list=PLGAdbivd-Y84dZgxeqSw7o75V6f9gS20r",
+                "order": "playlist"
+              }
             ]
           },
           {
             "name": "COPAGANDA",
             "playlists": [
-              "https://www.youtube.com/playlist?list=PLGAdbivd-Y85wjqk5VMRR1tHrdVjXaUV7"
+              {
+                "url": "https://www.youtube.com/playlist?list=PLGAdbivd-Y85wjqk5VMRR1tHrdVjXaUV7",
+                "order": "playlist"
+              }
             ]
           },
           {
             "name": "CARTOONS!",
             "playlists": [
-              "https://www.youtube.com/playlist?list=PLGAdbivd-Y84Thuj9IqXh0ivZFeXKZd-L"
+              {
+                "url": "https://www.youtube.com/playlist?list=PLGAdbivd-Y84Thuj9IqXh0ivZFeXKZd-L",
+                "order": "playlist"
+              }
             ]
           },
           {
             "name": "BORING",
             "playlists": [
-              "https://www.youtube.com/playlist?list=PLGAdbivd-Y85WdyeENmn2biXlRs7P-KXk"
+              {
+                "url": "https://www.youtube.com/playlist?list=PLGAdbivd-Y85WdyeENmn2biXlRs7P-KXk",
+                "order": "playlist"
+              }
             ]
           },
           {
             "name": "GLITCH",
             "playlists": [
-              "https://www.youtube.com/playlist?list=PLGAdbivd-Y8570XCOBC0i1LYTSn2aphKB"
+              {
+                "url": "https://www.youtube.com/playlist?list=PLGAdbivd-Y8570XCOBC0i1LYTSn2aphKB",
+                "order": "playlist"
+              }
             ]
           },
           {
             "name": "STUFF US & OUR PALS MAKE!",
             "playlists": [
-              "https://www.youtube.com/playlist?list=PLGAdbivd-Y85BvaqrCqnc5t-Lgc6cJ6bF"
+              {
+                "url": "https://www.youtube.com/playlist?list=PLGAdbivd-Y85BvaqrCqnc5t-Lgc6cJ6bF",
+                "order": "playlist"
+              }
             ]
           },
           {
             "name": "HOUR!",
             "playlists": [
-              "https://www.youtube.com/playlist?list=PLGAdbivd-Y85QefCO5kx3PeFHLzysLbWC"
+              {
+                "url": "https://www.youtube.com/playlist?list=PLGAdbivd-Y85QefCO5kx3PeFHLzysLbWC",
+                "order": "playlist"
+              }
             ]
           },
           {
             "name": "SPORTS!",
             "playlists": [
-              "https://www.youtube.com/playlist?list=PLGAdbivd-Y84B4VR-rM9bmhBFaVatC_9l"
+              {
+                "url": "https://www.youtube.com/playlist?list=PLGAdbivd-Y84B4VR-rM9bmhBFaVatC_9l",
+                "order": "playlist"
+              }
             ]
           },
           {
             "name": "TEENS",
             "playlists": [
-              "https://www.youtube.com/playlist?list=PLGAdbivd-Y87EccDZ-7kIWvSsQQUZr394"
+              {
+                "url": "https://www.youtube.com/playlist?list=PLGAdbivd-Y87EccDZ-7kIWvSsQQUZr394",
+                "order": "playlist"
+              }
             ]
           },
           {
             "name": "PUPPETS!",
             "playlists": [
-              "https://www.youtube.com/playlist?list=PLGAdbivd-Y84ntrjuAh-AFN8ssE99zche"
+              {
+                "url": "https://www.youtube.com/playlist?list=PLGAdbivd-Y84ntrjuAh-AFN8ssE99zche",
+                "order": "playlist"
+              }
             ]
           },
           {
             "name": "CORPORATIONS ARE TERRIBLE!",
             "playlists": [
-              "https://www.youtube.com/playlist?list=PLGAdbivd-Y85kjHeU82Aj6oP6xB_gH6XE"
+              {
+                "url": "https://www.youtube.com/playlist?list=PLGAdbivd-Y85kjHeU82Aj6oP6xB_gH6XE",
+                "order": "playlist"
+              }
             ]
           },
           {
             "name": "TERRIBLE CGI!",
             "playlists": [
-              "https://www.youtube.com/playlist?list=PLGAdbivd-Y862EEDICvuw96TzksVstICO"
+              {
+                "url": "https://www.youtube.com/playlist?list=PLGAdbivd-Y862EEDICvuw96TzksVstICO",
+                "order": "playlist"
+              }
             ]
           },
           {
             "name": "FITNESS!",
             "playlists": [
-              "https://www.youtube.com/playlist?list=PLGAdbivd-Y86cK0NWC98iScshCOEvSRHS"
+              {
+                "url": "https://www.youtube.com/playlist?list=PLGAdbivd-Y86cK0NWC98iScshCOEvSRHS",
+                "order": "playlist"
+              }
             ]
           },
           {
             "name": "TECHNOLOGY",
             "playlists": [
-              "https://www.youtube.com/playlist?list=PLGAdbivd-Y87hZCO-LBaXid2EOQ7Hjssa"
+              {
+                "url": "https://www.youtube.com/playlist?list=PLGAdbivd-Y87hZCO-LBaXid2EOQ7Hjssa",
+                "order": "playlist"
+              }
             ]
           },
           {
             "name": "SCHLOCK",
             "playlists": [
-              "https://www.youtube.com/playlist?list=PLGAdbivd-Y86wk4c2kzePcXs22FqhRAex"
+              {
+                "url": "https://www.youtube.com/playlist?list=PLGAdbivd-Y86wk4c2kzePcXs22FqhRAex",
+                "order": "playlist"
+              }
             ]
           },
           {
             "name": "LEARNING IS TERRIBLE!",
             "playlists": [
-              "https://www.youtube.com/playlist?list=PLGAdbivd-Y87-RFKpHFWw7RT7NAa1hygY"
+              {
+                "url": "https://www.youtube.com/playlist?list=PLGAdbivd-Y87-RFKpHFWw7RT7NAa1hygY",
+                "order": "playlist"
+              }
             ]
           },
           {
             "name": "SPACE",
             "playlists": [
-              "https://www.youtube.com/playlist?list=PLGAdbivd-Y86xQi1bxvJwWHv85ghL9K5V"
+              {
+                "url": "https://www.youtube.com/playlist?list=PLGAdbivd-Y86xQi1bxvJwWHv85ghL9K5V",
+                "order": "playlist"
+              }
             ]
           },
           {
             "name": "SEX IS TERRIBLE!",
             "playlists": [
-              "https://www.youtube.com/playlist?list=PLGAdbivd-Y84qBnD3ZhrAXFbSn6r4xIpl"
+              {
+                "url": "https://www.youtube.com/playlist?list=PLGAdbivd-Y84qBnD3ZhrAXFbSn6r4xIpl",
+                "order": "playlist"
+              }
             ]
           },
           {
             "name": "CELEBRITIES ARE TERRIBLE!",
             "playlists": [
-              "https://www.youtube.com/playlist?list=PLGAdbivd-Y841Zqn3kZFf6gt3jW8Pjc2_"
+              {
+                "url": "https://www.youtube.com/playlist?list=PLGAdbivd-Y841Zqn3kZFf6gt3jW8Pjc2_",
+                "order": "playlist"
+              }
             ]
           },
           {
             "name": "2 MINUTE MOVIES",
             "playlists": [
-              "https://www.youtube.com/playlist?list=PLGAdbivd-Y84Ioox9w7ge232fjfgPhFDF"
+              {
+                "url": "https://www.youtube.com/playlist?list=PLGAdbivd-Y84Ioox9w7ge232fjfgPhFDF",
+                "order": "playlist"
+              }
             ]
           },
           {
             "name": "THE GREAT SATAN",
             "playlists": [
-              "https://www.youtube.com/playlist?list=PLGAdbivd-Y87vbMbb7RRyil32FfYzumW5"
+              {
+                "url": "https://www.youtube.com/playlist?list=PLGAdbivd-Y87vbMbb7RRyil32FfYzumW5",
+                "order": "playlist"
+              }
             ]
           },
           {
             "name": "PSYCHEDELIC",
             "playlists": [
-              "https://www.youtube.com/playlist?list=PLGAdbivd-Y849DhxJn0KFITm5XYOBdlUb"
+              {
+                "url": "https://www.youtube.com/playlist?list=PLGAdbivd-Y849DhxJn0KFITm5XYOBdlUb",
+                "order": "playlist"
+              }
             ]
           },
           {
             "name": "3 MINUTE MOVIES",
             "playlists": [
-              "https://www.youtube.com/playlist?list=PLGAdbivd-Y86T74hCatYP4zVvx0O1jJ9f"
+              {
+                "url": "https://www.youtube.com/playlist?list=PLGAdbivd-Y86T74hCatYP4zVvx0O1jJ9f",
+                "order": "playlist"
+              }
             ]
           },
           {
             "name": "USA! USA!",
             "playlists": [
-              "https://www.youtube.com/playlist?list=PLGAdbivd-Y87ooGbkaxNGQNUwxx-mOjeU"
+              {
+                "url": "https://www.youtube.com/playlist?list=PLGAdbivd-Y87ooGbkaxNGQNUwxx-mOjeU",
+                "order": "playlist"
+              }
             ]
           },
           {
             "name": "BAD MOVIES",
             "playlists": [
-              "https://www.youtube.com/playlist?list=PLGAdbivd-Y86LMPg1GB5zGGb_EeuCjDl5"
+              {
+                "url": "https://www.youtube.com/playlist?list=PLGAdbivd-Y86LMPg1GB5zGGb_EeuCjDl5",
+                "order": "playlist"
+              }
             ]
           },
           {
             "name": "ALIENZ",
             "playlists": [
-              "https://www.youtube.com/playlist?list=PLGAdbivd-Y84EU5Zy-wCtDXs-RVzAhzZa"
+              {
+                "url": "https://www.youtube.com/playlist?list=PLGAdbivd-Y84EU5Zy-wCtDXs-RVzAhzZa",
+                "order": "playlist"
+              }
             ]
           },
           {
             "name": "PATRIARCHY",
             "playlists": [
-              "https://www.youtube.com/playlist?list=PLGAdbivd-Y84bgxuIFvTfO3mLUbFrRiJu"
+              {
+                "url": "https://www.youtube.com/playlist?list=PLGAdbivd-Y84bgxuIFvTfO3mLUbFrRiJu",
+                "order": "playlist"
+              }
             ]
           },
           {
             "name": "DADS",
             "playlists": [
-              "https://www.youtube.com/playlist?list=PLGAdbivd-Y857NCueelkrWcsNFZoIO0MD"
+              {
+                "url": "https://www.youtube.com/playlist?list=PLGAdbivd-Y857NCueelkrWcsNFZoIO0MD",
+                "order": "playlist"
+              }
             ]
           },
           {
             "name": "MOMS",
             "playlists": [
-              "https://www.youtube.com/playlist?list=PLGAdbivd-Y86TpwN_ymHp0zzqSWLDJkOZ"
+              {
+                "url": "https://www.youtube.com/playlist?list=PLGAdbivd-Y86TpwN_ymHp0zzqSWLDJkOZ",
+                "order": "playlist"
+              }
             ]
           },
           {
             "name": "POLITICAL TERRIBLE",
             "playlists": [
-              "https://www.youtube.com/playlist?list=PLGAdbivd-Y851Rwqpd7Z7W4kHUbfv_6O6"
+              {
+                "url": "https://www.youtube.com/playlist?list=PLGAdbivd-Y851Rwqpd7Z7W4kHUbfv_6O6",
+                "order": "playlist"
+              }
             ]
           },
           {
             "name": "RACISM",
             "playlists": [
-              "https://www.youtube.com/playlist?list=PLGAdbivd-Y85PSa0S4YdAT876F4EJXTAO"
+              {
+                "url": "https://www.youtube.com/playlist?list=PLGAdbivd-Y85PSa0S4YdAT876F4EJXTAO",
+                "order": "playlist"
+              }
             ]
           },
           {
             "name": "GET RICH QUICK!",
             "playlists": [
-              "https://www.youtube.com/playlist?list=PLGAdbivd-Y84cJciJWUKq8glJngih8eGM"
+              {
+                "url": "https://www.youtube.com/playlist?list=PLGAdbivd-Y84cJciJWUKq8glJngih8eGM",
+                "order": "playlist"
+              }
             ]
           },
           {
             "name": "ANIMALS!",
             "playlists": [
-              "https://www.youtube.com/playlist?list=PLGAdbivd-Y87FvMG1ryqfL8uzxgbwrFyr"
+              {
+                "url": "https://www.youtube.com/playlist?list=PLGAdbivd-Y87FvMG1ryqfL8uzxgbwrFyr",
+                "order": "playlist"
+              }
             ]
           },
           {
             "name": "DRUGS",
             "playlists": [
-              "https://www.youtube.com/playlist?list=PLGAdbivd-Y86j6s5Hv7hZEo8-ydYHHiQ2"
+              {
+                "url": "https://www.youtube.com/playlist?list=PLGAdbivd-Y86j6s5Hv7hZEo8-ydYHHiQ2",
+                "order": "playlist"
+              }
             ]
           },
           {
             "name": "MUSIC",
             "playlists": [
-              "https://www.youtube.com/playlist?list=PLGAdbivd-Y86lO-FXRDxkjNGeCNmL5f5n"
+              {
+                "url": "https://www.youtube.com/playlist?list=PLGAdbivd-Y86lO-FXRDxkjNGeCNmL5f5n",
+                "order": "playlist"
+              }
             ]
           },
           {
             "name": "COMEDY IS FUNNY",
             "playlists": [
-              "https://www.youtube.com/playlist?list=PLGAdbivd-Y85fN0B3Hn_dKut1qgwq8Qyk"
+              {
+                "url": "https://www.youtube.com/playlist?list=PLGAdbivd-Y85fN0B3Hn_dKut1qgwq8Qyk",
+                "order": "playlist"
+              }
             ]
           },
           {
             "name": "CREEPS",
             "playlists": [
-              "https://www.youtube.com/playlist?list=PLGAdbivd-Y87BJIx7uPcUF5xRBSuwA7Vm"
+              {
+                "url": "https://www.youtube.com/playlist?list=PLGAdbivd-Y87BJIx7uPcUF5xRBSuwA7Vm",
+                "order": "playlist"
+              }
             ]
           },
           {
             "name": "1 MINUTE MOVIES",
             "playlists": [
-              "https://www.youtube.com/playlist?list=PLGAdbivd-Y86z_8a1ui7Ww6LKEzi7BcvU"
+              {
+                "url": "https://www.youtube.com/playlist?list=PLGAdbivd-Y86z_8a1ui7Ww6LKEzi7BcvU",
+                "order": "playlist"
+              }
             ]
           },
           {
             "name": "BUY THIS THING!",
             "playlists": [
-              "https://www.youtube.com/playlist?list=PLGAdbivd-Y86cxoXWSgVLuDymuCWV6UN5"
+              {
+                "url": "https://www.youtube.com/playlist?list=PLGAdbivd-Y86cxoXWSgVLuDymuCWV6UN5",
+                "order": "playlist"
+              }
             ]
           },
           {
             "name": "HALLOWEEN",
             "playlists": [
-              "https://www.youtube.com/playlist?list=PLGAdbivd-Y857HXOw1eH7IlalS4Q7J7dM"
+              {
+                "url": "https://www.youtube.com/playlist?list=PLGAdbivd-Y857HXOw1eH7IlalS4Q7J7dM",
+                "order": "playlist"
+              }
             ]
           },
           {
             "name": "CHRISTMAS",
             "playlists": [
-              "https://www.youtube.com/playlist?list=PLGAdbivd-Y84HP0eOgD4COrYbuzQjwEKU"
+              {
+                "url": "https://www.youtube.com/playlist?list=PLGAdbivd-Y84HP0eOgD4COrYbuzQjwEKU",
+                "order": "playlist"
+              }
             ]
           },
           {
             "name": "RELIGION",
             "playlists": [
-              "https://www.youtube.com/playlist?list=PLGAdbivd-Y84ghMzYyGxZU9ZLXSYEabo4"
+              {
+                "url": "https://www.youtube.com/playlist?list=PLGAdbivd-Y84ghMzYyGxZU9ZLXSYEabo4",
+                "order": "playlist"
+              }
             ]
           },
           {
             "name": "EIT KIDZ KLUB",
             "playlists": [
-              "https://www.youtube.com/playlist?list=PLGAdbivd-Y87K6d84pSR5FFumvmPf04O4"
+              {
+                "url": "https://www.youtube.com/playlist?list=PLGAdbivd-Y87K6d84pSR5FFumvmPf04O4",
+                "order": "playlist"
+              }
             ]
           }
         ],
@@ -1755,33 +2515,33 @@
           "........kkwwwkkkkkkwwwkk........",
           ".......kwwkkmmmmyyyykkwwk.......",
           ".....kkwkkmmmmmmyyyyyykkwkk.....",
-          "....kkwkwkkmmmmmyyyyykkbkwkk....",
-          "....kwkwwwkmmmmmyyyyykbbbkwk....",
-          "...kwkwwwwwkmmmmyyyykbbbbbkwk...",
-          "..kwkwwwwwwkmmmmyyyykbbbbbbkwk..",
-          "..kwkkwwwwwwkmmmyyykbbbbbbkkwk..",
-          ".kkkkkkkkkkkkkkkkkkkkkkkkkkkkkk.",
-          ".vvvvvvvvvvvvvvvvvvvvvvvvvvvvvv.",
-          ".kkkkkkkkkkkkkkkkkkkkkkkkkkkkkk.",
-          ".kvvkkwwwwwwwwwwwwwwwwwwwwkkvvk.",
+          "    kkwkwkkmmmmmyyyyykkbkwkk    ",
+          "    kwkwwwkmmmmmyyyyykbbbkwk    ",
+          "   kwkwwwwwkmmmmyyyykbbbbbkwk   ",
+          "  kwkwwwwwwkmmmmyyyykbbbbbbkwk  ",
+          "  kwkkwwwwwwkmmmyyykbbbbbbkkwk  ",
+          " .kkkkkkkkkkkkkkkkkkkkkkkkkkkkkk.",
+          " .vvvvvvvvvvvvvvvvvvvvvvvvvvvvvv.",
+          " .kkkkkkkkkkkkkkkkkkkkkkkkkkkkkk.",
+          " .kvvkkwwwwwwwwwwwwwwwwwwwwkkvvk.",
           "kkvvkkwwkkkkkkkkkkkkkkkkwwkkvvkk",
           "kkvvkkwwkkkbbbyyyybbbkkkwwkkvvkk",
           "kkvvkkwwkkkkbyykkyybkkkkwwkkvvkk",
           "kkvvkkwwkkkbbbyyyybbbkkkwwkkvvkk",
-          ".kvvkkwwkkkkkkkkkkkkkkkkwwkkvvk.",
-          ".kvvkkwwwwwwwwwwwwwwwwwwwwkkvvk.",
-          ".kkkkkkkkkkkkkkkkkkkkkkkkkkkkkk.",
-          ".vvvvvvvvvvvvvvvvvvvvvvvvvvvvvv.",
-          "..kkkkkkkkkkkkkkkkkkkkkkkkkkkk..",
-          "..kwkmmmmmmkwwwwbbbbkyyyyyykwk..",
-          "...kwkmmmmmkwwwwbbbbkyyyyykwk...",
-          "....kwkmmmkwwwwwbbbbbkyyykwk....",
-          "....kkwkmkkwwwwwbbbbbkkykwkk....",
-          ".....kkwkkwwwwwwbbbbbbkkwkk.....",
-          ".......kwwkkwwwwbbbbkkwwk.......",
-          "........kkwwwkkkkkkwwwkk........",
-          "..........kkkwwwwwwkkk..........",
-          "..............kkkk.............."
+          " .kvvkkwwkkkkkkkkkkkkkkkkwwkkvvk.",
+          " .kvvkkwwwwwwwwwwwwwwwwwwwwkkvvk.",
+          " .kkkkkkkkkkkkkkkkkkkkkkkkkkkkkk.",
+          " .vvvvvvvvvvvvvvvvvvvvvvvvvvvvvv.",
+          "  ..kkkkkkkkkkkkkkkkkkkkkkkkkk..",
+          "  ..kwkmmmmmmkwwwwbbbbkyyyyyykwk..",
+          "   ...kwkmmmmmkwwwwbbbbkyyyyykwk...",
+          "    ....kwkmmmkwwwwwbbbbbkyyykwk....",
+          "    kkwkmkkwwwwwbbbbbkkykwkk    ",
+          "     kkwkkwwwwwwbbbbbbkkwkk     ",
+          "       kwwkkwwwwbbbbkkwwk       ",
+          "        kkwwwkkkkkkwwwkk        ",
+          "          kkkwwwwwwkkk          ",
+          "              kkkk              "
         ],
         "palette": {
           "m": "#e8457c",
@@ -2446,34 +3206,6 @@
               "text": "SEES YOU TOO."
             }
           ]
-        },
-        {
-          "id": "eitn-013",
-          "slides": [
-            {
-              "text": "EISTV"
-            },
-            {
-              "text": "THE ALL-SEEING TAPE"
-            },
-            {
-              "text": "SEES YOU TOO."
-            }
-          ]
-        },
-        {
-          "id": "eitn-013",
-          "slides": [
-            {
-              "text": "EISTV"
-            },
-            {
-              "text": "THE ALL-SEEING TAPE"
-            },
-            {
-              "text": "SEES YOU TOO."
-            }
-          ]
         }
       ],
       "music": [
@@ -2612,60 +3344,6 @@
           "source": "archive.org",
           "license": "by",
           "license_version": "4.0"
-        },
-        {
-          "filename": "kevin-macleod-motivator.mp3",
-          "title": "Motivator",
-          "artist": "Kevin MacLeod",
-          "license": "by"
-        },
-        {
-          "filename": "f-u-t-u-r-e-shopping-bonanza.mp3",
-          "title": "Shopping Bonanza",
-          "artist": "F u t u r e",
-          "license": "by-sa"
-        },
-        {
-          "filename": "f-u-t-u-r-e-corporate-manager-expo-lounge.mp3",
-          "title": "Corporate Manager Expo Lounge",
-          "artist": "F u t u r e",
-          "license": "by-sa"
-        },
-        {
-          "filename": "roboctopus-all-outta-bubblegum.mp3",
-          "title": "All Outta Bubblegum",
-          "artist": "roboctopus",
-          "license": "by-sa"
-        },
-        {
-          "filename": "roboctopus-last-flight-of-the-camcorder.mp3",
-          "title": "Last Flight of the Camcorder",
-          "artist": "roboctopus",
-          "license": "by-sa"
-        },
-        {
-          "filename": "kevin-macleod-hep-cats.mp3",
-          "title": "Hep Cats",
-          "artist": "Kevin MacLeod",
-          "license": "by"
-        },
-        {
-          "filename": "wheatleyyrahcaz-w-we-present-a-special-presentation-you-will-see-such-pretty-things.mp3",
-          "title": "W We Present A Special Presentation You Will See Such Pretty Things",
-          "artist": "Wheatleyyrahcaz",
-          "license": "by"
-        },
-        {
-          "filename": "chezmonplaisir-you-are-in-good-hands.mp3",
-          "title": "You Are In Good Hands",
-          "artist": "Chezmonplaisir",
-          "license": "by"
-        },
-        {
-          "filename": "digi-hartatak-elevator-music.mp3",
-          "title": "Elevator Music",
-          "artist": "Digi Hartatak",
-          "license": "by"
         }
       ],
       "network_music": [
@@ -2804,30 +3482,6 @@
           "source": "archive.org",
           "license": "by",
           "license_version": "2.0"
-        },
-        {
-          "filename": "boguscollective-magic-touch.mp3",
-          "title": "Magic Touch",
-          "artist": "Boguscollective",
-          "license": "by"
-        },
-        {
-          "filename": "astromegamusic-the-mec-monroe-freestyle-flip.mp3",
-          "title": "The Mec Monroe Freestyle Flip",
-          "artist": "Astromegamusic",
-          "license": "by"
-        },
-        {
-          "filename": "astromegamusic-kyahs-jazzz.mp3",
-          "title": "Kyahs Jazzz",
-          "artist": "Astromegamusic",
-          "license": "by"
-        },
-        {
-          "filename": "bvftg-1993-toyota-corolla.mp3",
-          "title": "1993 Toyota Corolla",
-          "artist": "Bvftg",
-          "license": "by"
         }
       ]
     }
