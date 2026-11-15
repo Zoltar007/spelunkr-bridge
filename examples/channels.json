@@ -1381,713 +1381,6 @@
       "vhs": []
     },
     {
-      "id": "lgr",
-      "name": "LGR",
-      "dial": 903,
-      "color": "#008000",
-      "family": "comedy",
-      "fit": "letterbox",
-      "card_seconds": 20,
-      "mid_break_minutes": 5,
-      "description": "LGR: Coverage of retro tech, PC gaming, and more! Classic computers, Oddware, games, thrifting, Tech Tales, etc",
-      "youtube": {
-        "breaks": "sponsorblock",
-        "shows": [
-          {
-            "name": "Lazy Game Reviews - Official Playlist Pt. 1",
-            "playlists": [
-              {
-                "url": "https://www.youtube.com/playlist?list=PL3BC2ECCF73B81434",
-                "order": "playlist"
-              }
-            ]
-          },
-          {
-            "name": "LGR - Official Playlist Pt. 2",
-            "playlists": [
-              {
-                "url": "https://www.youtube.com/playlist?list=PLFE883AFC0FEC1358",
-                "order": "playlist"
-              }
-            ]
-          },
-          {
-            "name": "LGR Official Playlist Part 3",
-            "playlists": [
-              {
-                "url": "https://www.youtube.com/playlist?list=PLbBZM9aUMsjHoH9SLxbYjeP4iMtZZgPiY",
-                "order": "playlist"
-              }
-            ]
-          },
-          {
-            "name": "LGR Thrifts",
-            "playlists": [
-              {
-                "url": "https://www.youtube.com/playlist?list=PLbBZM9aUMsjEM76RFMofBZmDBuqNPnCdt",
-                "order": "playlist"
-              }
-            ]
-          }
-        ],
-        "title_strip": "\\s*/{2,}\\s*LGR*\\s*$",
-        "skip": []
-      },
-      "logomark": {
-        "type": "pixel",
-        "rows": [
-          "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
-          "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
-          "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
-          "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
-          "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
-          "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
-          "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
-          "bccaaaacaaacaaaaaaaaaaaaaacaadaa",
-          "aeffffgaaaaaabhffffiaceffffffeaa",
-          "ghjkkjgaaaaaaelkjkkddbmkkkjjjnga",
-          "gemkkmaaaaaaamjonmlmgbhokjnmjoea",
-          "gankkeaaaaaaolhegehliaamkjahlpha",
-          "gankkeaaaaabllcaaaalgaamkjahlpha",
-          "gankkeaaaaabllcaaaadaaamkjchljha",
-          "gankkeaaaaabllcaaaaaaaamklnmloea",
-          "gankkeaaaaabllchmmmmaaamkjmkknaa",
-          "cankkeaaaaablldnkjjliaamkjekpnia",
-          "iankkeaaaaabllcbemlliaamkjbnllha",
-          "dankkeachhabllcacnlliaamkjahlpha",
-          "cankkeabmmabolhecnlliaamkjahlpha",
-          "dinkkedhjmaadjjmgnlliagmkjahlpha",
-          "ceokkmmmkmaaamlommnlibfokjahlpha",
-          "dennnnnnnhaaabfnnhbngchnnnaennea",
-          "bdcccccibccacabccddcgdddccdgdcdi",
-          "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
-          "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
-          "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
-          "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
-          "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
-          "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
-          "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
-          "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
-        ],
-        "palette": {
-          "a": "#008c00",
-          "b": "#018f00",
-          "c": "#008d01",
-          "d": "#008c01",
-          "e": "#019902",
-          "f": "#00af01",
-          "g": "#018b02",
-          "h": "#02a702",
-          "i": "#018c00",
-          "j": "#03fd02",
-          "k": "#00ff01",
-          "l": "#01fa02",
-          "m": "#02ca02",
-          "n": "#01b801",
-          "o": "#02ea02",
-          "p": "#00ff00"
-        }
-      },
-      "ads": {
-        "years": [
-          1980,
-          1999
-        ],
-        "exclude": "jpcm|ytchannel1|japan|angels-egg|bandai|anime|adv-films|[\\u3040-\\u30ff\\u4e00-\\u9fff]",
-        "boost": "trailer|preview|coming.?attraction|opening.?to|vhs|theatrical|tv.?spot|movie|feature.?presentation|rental|blockbuster",
-        "boost_weight": 3
-      },
-      "bumps": [
-        {
-          "id": "lgr-001",
-          "show": "Lazy Game Reviews - Official Playlist Pt. 1",
-          "slides": [
-            {
-              "text": "wood grain texture."
-            },
-            {
-              "text": "maximum cozy."
-            },
-            {
-              "text": "lazy game reviews."
-            }
-          ]
-        },
-        {
-          "id": "lgr-002",
-          "show": "Lazy Game Reviews - Official Playlist Pt. 1",
-          "slides": [
-            {
-              "text": "let's look at some old software."
-            },
-            {
-              "text": "from a thrift store."
-            },
-            {
-              "text": "lazy game reviews."
-            }
-          ]
-        },
-        {
-          "id": "lgr-003",
-          "show": "Lazy Game Reviews - Official Playlist Pt. 1",
-          "slides": [
-            {
-              "text": "ibm compatibilities."
-            },
-            {
-              "text": "sound blaster 16."
-            },
-            {
-              "text": "lazy game reviews."
-            }
-          ]
-        },
-        {
-          "id": "lgr-004",
-          "show": "Lazy Game Reviews - Official Playlist Pt. 1",
-          "slides": [
-            {
-              "text": "unpacking a weird box."
-            },
-            {
-              "text": "found in a kentucky basement."
-            },
-            {
-              "text": "lazy game reviews."
-            }
-          ]
-        },
-        {
-          "id": "lgr-005",
-          "show": "Lazy Game Reviews - Official Playlist Pt. 1",
-          "slides": [
-            {
-              "text": "oddware detected."
-            },
-            {
-              "text": "proceed with caution."
-            },
-            {
-              "text": "lazy game reviews."
-            }
-          ]
-        },
-        {
-          "id": "lgr-006",
-          "show": "LGR - Official Playlist Pt. 2",
-          "slides": [
-            {
-              "text": "the 90s pc experience."
-            },
-            {
-              "text": "now streaming live."
-            },
-            {
-              "text": "lazy game reviews."
-            }
-          ]
-        },
-        {
-          "id": "lgr-007",
-          "show": "LGR - Official Playlist Pt. 2",
-          "slides": [
-            {
-              "text": "greetings."
-            },
-            {
-              "text": "clint here."
-            },
-            {
-              "text": "lazy game reviews."
-            }
-          ]
-        },
-        {
-          "id": "lgr-008",
-          "show": "LGR - Official Playlist Pt. 2",
-          "slides": [
-            {
-              "text": "simcity build journal."
-            },
-            {
-              "text": "things are going well."
-            },
-            {
-              "text": "(everything is on fire.)"
-            },
-            {
-              "text": "lazy game reviews."
-            }
-          ]
-        },
-        {
-          "id": "lgr-009",
-          "show": "LGR - Official Playlist Pt. 2",
-          "slides": [
-            {
-              "text": "floppy disk week."
-            },
-            {
-              "text": "hope the magnetic layer holds."
-            },
-            {
-              "text": "lazy game reviews."
-            }
-          ]
-        },
-        {
-          "id": "lgr-010",
-          "show": "LGR Thrifts",
-          "slides": [
-            {
-              "text": "checking out a thrift store find."
-            },
-            {
-              "text": "it smells like 1994."
-            },
-            {
-              "text": "lazy game reviews."
-            }
-          ]
-        }
-      ],
-      "network_bumps": [
-        {
-          "id": "lgrn-01",
-          "show": "LGR Official Playlist Part 3",
-          "slides": [
-            {
-              "text": "dos games."
-            },
-            {
-              "text": "midi music playing."
-            },
-            {
-              "text": "life is good."
-            },
-            {
-              "text": "lazy game reviews."
-            }
-          ]
-        },
-        {
-          "id": "lgrn-02",
-          "show": "LGR Official Playlist Part 3",
-          "slides": [
-            {
-              "text": "that's neat."
-            },
-            {
-              "text": "literally."
-            },
-            {
-              "text": "lazy game reviews."
-            }
-          ]
-        },
-        {
-          "id": "lgrn-03",
-          "show": "LGR Official Playlist Part 3",
-          "slides": [
-            {
-              "text": "plugging in a joystick"
-            },
-            {
-              "text": "via the game port."
-            },
-            {
-              "text": "lazy game reviews."
-            }
-          ]
-        },
-        {
-          "id": "lgrn-04",
-          "show": "LGR Official Playlist Part 3",
-          "slides": [
-            {
-              "text": "the manual was thicker than the game."
-            },
-            {
-              "text": "good times."
-            },
-            {
-              "text": "lazy game reviews."
-            }
-          ]
-        },
-        {
-          "id": "lgrn-05",
-          "show": "LGR Thrifts",
-          "slides": [
-            {
-              "text": "cleaning yellowed plastic."
-            },
-            {
-              "text": "retrobrite applied."
-            },
-            {
-              "text": "lazy game reviews."
-            }
-          ]
-        },
-        {
-          "id": "lgrn-06",
-          "show": "LGR Official Playlist Part 3",
-          "slides": [
-            {
-              "text": "testing out a weird peripheral."
-            },
-            {
-              "text": "it did not sell well."
-            },
-            {
-              "text": "lazy game reviews."
-            }
-          ]
-        },
-        {
-          "id": "lgrn-07",
-          "show": "Lazy Game Reviews - Official Playlist Pt. 1",
-          "slides": [
-            {
-              "text": "windows 95 startup chime."
-            },
-            {
-              "text": "cue nostalgia."
-            },
-            {
-              "text": "lazy game reviews."
-            }
-          ]
-        },
-        {
-          "id": "lgrn-08",
-          "show": "LGR Thrifts",
-          "slides": [
-            {
-              "text": "opening a big box pc game."
-            },
-            {
-              "text": "smell the cardboard."
-            },
-            {
-              "text": "lazy game reviews."
-            }
-          ]
-        },
-        {
-          "id": "lgrn-09",
-          "show": "Lazy Game Reviews - Official Playlist Pt. 1",
-          "slides": [
-            {
-              "text": "maximum frame rates."
-            },
-            {
-              "text": "on a 486."
-            },
-            {
-              "text": "lazy game reviews."
-            }
-          ]
-        },
-        {
-          "id": "lgrn-10",
-          "show": "LGR - Official Playlist Pt. 2",
-          "slides": [
-            {
-              "text": "you've been watching tech and games"
-            },
-            {
-              "text": "for hours."
-            },
-            {
-              "text": "time to check out some more oddware."
-            },
-            {
-              "text": "lazy game reviews."
-            }
-          ]
-        }
-      ],
-      "music": [
-        {
-          "file": "music/kevin-macleod-eighties-action.mp3",
-          "title": "Eighties Action",
-          "artist": "Kevin MacLeod",
-          "source": "incompetech.com",
-          "license": "by",
-          "license_version": "4.0"
-        },
-        {
-          "file": "music/kevin-macleod-monster-promenade.mp3",
-          "title": "Monster Promenade",
-          "artist": "Kevin MacLeod",
-          "source": "incompetech.com",
-          "license": "by",
-          "license_version": "4.0"
-        },
-        {
-          "file": "music/kevin-macleod-graveyard-shift.mp3",
-          "title": "Graveyard Shift",
-          "artist": "Kevin MacLeod",
-          "source": "incompetech.com",
-          "license": "by",
-          "license_version": "4.0"
-        },
-        {
-          "file": "music/kevin-macleod-cut-and-run.mp3",
-          "title": "Cut and Run",
-          "artist": "Kevin MacLeod",
-          "source": "incompetech.com",
-          "license": "by",
-          "license_version": "4.0"
-        },
-        {
-          "file": "music/kevin-macleod-volatile-reaction.mp3",
-          "title": "Volatile Reaction",
-          "artist": "Kevin MacLeod",
-          "source": "incompetech.com",
-          "license": "by",
-          "license_version": "4.0"
-        },
-        {
-          "file": "music/lazerhawk-escape-from-germany.mp3",
-          "title": "Escape From Germany",
-          "artist": "Lazerhawk",
-          "source": "archive.org",
-          "license": "by-sa",
-          "license_version": "3.0"
-        },
-        {
-          "file": "music/irving-force-back-alley-creepers.mp3",
-          "title": "Back Alley Creepers",
-          "artist": "Irving Force",
-          "source": "archive.org",
-          "license": "by-sa",
-          "license_version": "3.0"
-        },
-        {
-          "file": "music/gunship-pink-mist.mp3",
-          "title": "Pink Mist",
-          "artist": "GUNSHIP",
-          "source": "archive.org",
-          "license": "by-sa",
-          "license_version": "3.0"
-        },
-        {
-          "file": "music/vhs-glitch-he-sees-you.mp3",
-          "title": "He Sees You",
-          "artist": "VHS Glitch",
-          "source": "archive.org",
-          "license": "by-sa",
-          "license_version": "3.0"
-        },
-        {
-          "file": "music/airglow-electrifying-landscape.mp3",
-          "title": "Electrifying Landscape",
-          "artist": "AIRGLOW",
-          "source": "archive.org",
-          "license": "by",
-          "license_version": "3.0"
-        },
-        {
-          "file": "music/airglow-memory-bank.mp3",
-          "title": "Memory Bank",
-          "artist": "AIRGLOW",
-          "source": "archive.org",
-          "license": "by",
-          "license_version": "3.0"
-        },
-        {
-          "file": "music/timecrawler-82-driving-in-the-rain.mp3",
-          "title": "Driving in the Rain",
-          "artist": "Timecrawler 82",
-          "source": "archive.org",
-          "license": "by",
-          "license_version": "4.0"
-        },
-        {
-          "file": "music/timecrawler-82-street-dancing.mp3",
-          "title": "Street Dancing",
-          "artist": "Timecrawler 82",
-          "source": "archive.org",
-          "license": "by",
-          "license_version": "4.0"
-        },
-        {
-          "file": "music/telematix-last-train-to-nowhere.mp3",
-          "title": "Last Train To Nowhere",
-          "artist": "Telematix",
-          "source": "archive.org",
-          "license": "by-sa",
-          "license_version": "3.0"
-        },
-        {
-          "file": "music/telematix-flashback.mp3",
-          "title": "Flashback",
-          "artist": "Telematix",
-          "source": "archive.org",
-          "license": "by-sa",
-          "license_version": "3.0"
-        },
-        {
-          "file": "music/mach-man-mini-cool-runningz.mp3",
-          "title": "Cool Runningz",
-          "artist": "Mach-Man Mini",
-          "source": "archive.org",
-          "license": "by",
-          "license_version": "4.0"
-        },
-        {
-          "file": "music/rolemusic-the-great-madeja.mp3",
-          "title": "The Great Madeja",
-          "artist": "rolemusic",
-          "source": "archive.org",
-          "license": "by",
-          "license_version": "4.0"
-        }
-      ],
-      "network_music": [
-        {
-          "file": "music/kevin-macleod-local-forecast-elevator.mp3",
-          "title": "Local Forecast - Elevator",
-          "artist": "Kevin MacLeod",
-          "source": "incompetech.com",
-          "license": "by",
-          "license_version": "4.0"
-        },
-        {
-          "file": "music/kevin-macleod-local-forecast.mp3",
-          "title": "Local Forecast",
-          "artist": "Kevin MacLeod",
-          "source": "incompetech.com",
-          "license": "by",
-          "license_version": "4.0"
-        },
-        {
-          "file": "music/kevin-macleod-on-hold-for-you.mp3",
-          "title": "On Hold for You",
-          "artist": "Kevin MacLeod",
-          "source": "incompetech.com",
-          "license": "by",
-          "license_version": "4.0"
-        },
-        {
-          "file": "music/kevin-macleod-presenterator.mp3",
-          "title": "Presenterator",
-          "artist": "Kevin MacLeod",
-          "source": "incompetech.com",
-          "license": "by",
-          "license_version": "4.0"
-        },
-        {
-          "file": "music/kevin-macleod-leopard-print-elevator.mp3",
-          "title": "Leopard Print Elevator",
-          "artist": "Kevin MacLeod",
-          "source": "incompetech.com",
-          "license": "by",
-          "license_version": "4.0"
-        },
-        {
-          "file": "music/kevin-macleod-disco-lounge.mp3",
-          "title": "Disco Lounge",
-          "artist": "Kevin MacLeod",
-          "source": "incompetech.com",
-          "license": "by",
-          "license_version": "4.0"
-        },
-        {
-          "file": "music/2003-toyota-corolla-2003-toyota-corolla.mp3",
-          "title": "2003 Toyota Corolla",
-          "artist": "2003 Toyota Corolla",
-          "source": "archive.org",
-          "license": "by-sa",
-          "license_version": "4.0"
-        },
-        {
-          "file": "music/2003-toyota-corolla-2004-toyota-corolla.mp3",
-          "title": "2004 Toyota Corolla",
-          "artist": "2003 Toyota Corolla",
-          "source": "archive.org",
-          "license": "by-sa",
-          "license_version": "4.0"
-        },
-        {
-          "file": "music/ilikestapler-dilbert-2.mp3",
-          "title": "dilbert 2",
-          "artist": "ILikeStapler",
-          "source": "archive.org",
-          "license": "by",
-          "license_version": "4.0"
-        },
-        {
-          "file": "music/juice-plus-how-many-ohms-you-got.mp3",
-          "title": "how many ohms you got",
-          "artist": "JUICE PLUS",
-          "source": "archive.org",
-          "license": "by",
-          "license_version": "4.0"
-        },
-        {
-          "file": "music/thought-pyramid-endless.mp3",
-          "title": "Endless",
-          "artist": "Thought Pyramid",
-          "source": "archive.org",
-          "license": "by",
-          "license_version": "2.0"
-        },
-        {
-          "file": "music/thought-pyramid-morning-cup.mp3",
-          "title": "Morning Cup",
-          "artist": "Thought Pyramid",
-          "source": "archive.org",
-          "license": "by",
-          "license_version": "2.0"
-        },
-        {
-          "file": "music/dr-tuxedo-electric-blue.mp3",
-          "title": "Electric Blue",
-          "artist": "Dr. Tuxedo",
-          "source": "archive.org",
-          "license": "by",
-          "license_version": "3.0"
-        },
-        {
-          "file": "music/dr-tuxedo-groove-factory.mp3",
-          "title": "Groove Factory",
-          "artist": "Dr. Tuxedo",
-          "source": "archive.org",
-          "license": "by",
-          "license_version": "3.0"
-        },
-        {
-          "file": "music/deadman-digi-hartatak-elevatored.mp3",
-          "title": "Elevatored",
-          "artist": "Deadman & Digi Hartatak",
-          "source": "archive.org",
-          "license": "by",
-          "license_version": "3.0"
-        },
-        {
-          "file": "music/mach-man-mini-please-hold.mp3",
-          "title": "Please Hold",
-          "artist": "Mach-Man Mini",
-          "source": "archive.org",
-          "license": "by",
-          "license_version": "4.0"
-        },
-        {
-          "file": "music/thought-pyramid-quad-cities.mp3",
-          "title": "Quad Cities",
-          "artist": "Thought Pyramid",
-          "source": "archive.org",
-          "license": "by",
-          "license_version": "2.0"
-        }
-      ]
-    },
-    {
       "id": "eistv",
       "name": "EISTV",
       "dial": 901,
@@ -3204,6 +2497,712 @@
             },
             {
               "text": "SEES YOU TOO."
+            }
+          ]
+        }
+      ],
+      "music": [
+        {
+          "file": "music/kevin-macleod-eighties-action.mp3",
+          "title": "Eighties Action",
+          "artist": "Kevin MacLeod",
+          "source": "incompetech.com",
+          "license": "by",
+          "license_version": "4.0"
+        },
+        {
+          "file": "music/kevin-macleod-monster-promenade.mp3",
+          "title": "Monster Promenade",
+          "artist": "Kevin MacLeod",
+          "source": "incompetech.com",
+          "license": "by",
+          "license_version": "4.0"
+        },
+        {
+          "file": "music/kevin-macleod-graveyard-shift.mp3",
+          "title": "Graveyard Shift",
+          "artist": "Kevin MacLeod",
+          "source": "incompetech.com",
+          "license": "by",
+          "license_version": "4.0"
+        },
+        {
+          "file": "music/kevin-macleod-cut-and-run.mp3",
+          "title": "Cut and Run",
+          "artist": "Kevin MacLeod",
+          "source": "incompetech.com",
+          "license": "by",
+          "license_version": "4.0"
+        },
+        {
+          "file": "music/kevin-macleod-volatile-reaction.mp3",
+          "title": "Volatile Reaction",
+          "artist": "Kevin MacLeod",
+          "source": "incompetech.com",
+          "license": "by",
+          "license_version": "4.0"
+        },
+        {
+          "file": "music/lazerhawk-escape-from-germany.mp3",
+          "title": "Escape From Germany",
+          "artist": "Lazerhawk",
+          "source": "archive.org",
+          "license": "by-sa",
+          "license_version": "3.0"
+        },
+        {
+          "file": "music/irving-force-back-alley-creepers.mp3",
+          "title": "Back Alley Creepers",
+          "artist": "Irving Force",
+          "source": "archive.org",
+          "license": "by-sa",
+          "license_version": "3.0"
+        },
+        {
+          "file": "music/gunship-pink-mist.mp3",
+          "title": "Pink Mist",
+          "artist": "GUNSHIP",
+          "source": "archive.org",
+          "license": "by-sa",
+          "license_version": "3.0"
+        },
+        {
+          "file": "music/vhs-glitch-he-sees-you.mp3",
+          "title": "He Sees You",
+          "artist": "VHS Glitch",
+          "source": "archive.org",
+          "license": "by-sa",
+          "license_version": "3.0"
+        },
+        {
+          "file": "music/airglow-electrifying-landscape.mp3",
+          "title": "Electrifying Landscape",
+          "artist": "AIRGLOW",
+          "source": "archive.org",
+          "license": "by",
+          "license_version": "3.0"
+        },
+        {
+          "file": "music/airglow-memory-bank.mp3",
+          "title": "Memory Bank",
+          "artist": "AIRGLOW",
+          "source": "archive.org",
+          "license": "by",
+          "license_version": "3.0"
+        },
+        {
+          "file": "music/timecrawler-82-driving-in-the-rain.mp3",
+          "title": "Driving in the Rain",
+          "artist": "Timecrawler 82",
+          "source": "archive.org",
+          "license": "by",
+          "license_version": "4.0"
+        },
+        {
+          "file": "music/timecrawler-82-street-dancing.mp3",
+          "title": "Street Dancing",
+          "artist": "Timecrawler 82",
+          "source": "archive.org",
+          "license": "by",
+          "license_version": "4.0"
+        },
+        {
+          "file": "music/telematix-last-train-to-nowhere.mp3",
+          "title": "Last Train To Nowhere",
+          "artist": "Telematix",
+          "source": "archive.org",
+          "license": "by-sa",
+          "license_version": "3.0"
+        },
+        {
+          "file": "music/telematix-flashback.mp3",
+          "title": "Flashback",
+          "artist": "Telematix",
+          "source": "archive.org",
+          "license": "by-sa",
+          "license_version": "3.0"
+        },
+        {
+          "file": "music/mach-man-mini-cool-runningz.mp3",
+          "title": "Cool Runningz",
+          "artist": "Mach-Man Mini",
+          "source": "archive.org",
+          "license": "by",
+          "license_version": "4.0"
+        },
+        {
+          "file": "music/rolemusic-the-great-madeja.mp3",
+          "title": "The Great Madeja",
+          "artist": "rolemusic",
+          "source": "archive.org",
+          "license": "by",
+          "license_version": "4.0"
+        }
+      ],
+      "network_music": [
+        {
+          "file": "music/kevin-macleod-local-forecast-elevator.mp3",
+          "title": "Local Forecast - Elevator",
+          "artist": "Kevin MacLeod",
+          "source": "incompetech.com",
+          "license": "by",
+          "license_version": "4.0"
+        },
+        {
+          "file": "music/kevin-macleod-local-forecast.mp3",
+          "title": "Local Forecast",
+          "artist": "Kevin MacLeod",
+          "source": "incompetech.com",
+          "license": "by",
+          "license_version": "4.0"
+        },
+        {
+          "file": "music/kevin-macleod-on-hold-for-you.mp3",
+          "title": "On Hold for You",
+          "artist": "Kevin MacLeod",
+          "source": "incompetech.com",
+          "license": "by",
+          "license_version": "4.0"
+        },
+        {
+          "file": "music/kevin-macleod-presenterator.mp3",
+          "title": "Presenterator",
+          "artist": "Kevin MacLeod",
+          "source": "incompetech.com",
+          "license": "by",
+          "license_version": "4.0"
+        },
+        {
+          "file": "music/kevin-macleod-leopard-print-elevator.mp3",
+          "title": "Leopard Print Elevator",
+          "artist": "Kevin MacLeod",
+          "source": "incompetech.com",
+          "license": "by",
+          "license_version": "4.0"
+        },
+        {
+          "file": "music/kevin-macleod-disco-lounge.mp3",
+          "title": "Disco Lounge",
+          "artist": "Kevin MacLeod",
+          "source": "incompetech.com",
+          "license": "by",
+          "license_version": "4.0"
+        },
+        {
+          "file": "music/2003-toyota-corolla-2003-toyota-corolla.mp3",
+          "title": "2003 Toyota Corolla",
+          "artist": "2003 Toyota Corolla",
+          "source": "archive.org",
+          "license": "by-sa",
+          "license_version": "4.0"
+        },
+        {
+          "file": "music/2003-toyota-corolla-2004-toyota-corolla.mp3",
+          "title": "2004 Toyota Corolla",
+          "artist": "2003 Toyota Corolla",
+          "source": "archive.org",
+          "license": "by-sa",
+          "license_version": "4.0"
+        },
+        {
+          "file": "music/ilikestapler-dilbert-2.mp3",
+          "title": "dilbert 2",
+          "artist": "ILikeStapler",
+          "source": "archive.org",
+          "license": "by",
+          "license_version": "4.0"
+        },
+        {
+          "file": "music/juice-plus-how-many-ohms-you-got.mp3",
+          "title": "how many ohms you got",
+          "artist": "JUICE PLUS",
+          "source": "archive.org",
+          "license": "by",
+          "license_version": "4.0"
+        },
+        {
+          "file": "music/thought-pyramid-endless.mp3",
+          "title": "Endless",
+          "artist": "Thought Pyramid",
+          "source": "archive.org",
+          "license": "by",
+          "license_version": "2.0"
+        },
+        {
+          "file": "music/thought-pyramid-morning-cup.mp3",
+          "title": "Morning Cup",
+          "artist": "Thought Pyramid",
+          "source": "archive.org",
+          "license": "by",
+          "license_version": "2.0"
+        },
+        {
+          "file": "music/dr-tuxedo-electric-blue.mp3",
+          "title": "Electric Blue",
+          "artist": "Dr. Tuxedo",
+          "source": "archive.org",
+          "license": "by",
+          "license_version": "3.0"
+        },
+        {
+          "file": "music/dr-tuxedo-groove-factory.mp3",
+          "title": "Groove Factory",
+          "artist": "Dr. Tuxedo",
+          "source": "archive.org",
+          "license": "by",
+          "license_version": "3.0"
+        },
+        {
+          "file": "music/deadman-digi-hartatak-elevatored.mp3",
+          "title": "Elevatored",
+          "artist": "Deadman & Digi Hartatak",
+          "source": "archive.org",
+          "license": "by",
+          "license_version": "3.0"
+        },
+        {
+          "file": "music/mach-man-mini-please-hold.mp3",
+          "title": "Please Hold",
+          "artist": "Mach-Man Mini",
+          "source": "archive.org",
+          "license": "by",
+          "license_version": "4.0"
+        },
+        {
+          "file": "music/thought-pyramid-quad-cities.mp3",
+          "title": "Quad Cities",
+          "artist": "Thought Pyramid",
+          "source": "archive.org",
+          "license": "by",
+          "license_version": "2.0"
+        }
+      ]
+    },
+    {
+      "id": "lgr",
+      "name": "LGR",
+      "dial": 903,
+      "color": "#008000",
+      "family": "comedy",
+      "fit": "letterbox",
+      "card_seconds": 20,
+      "mid_break_minutes": 5,
+      "description": "LGR: Coverage of retro tech, PC gaming, and more! Classic computers, Oddware, games, thrifting, Tech Tales, etc",
+      "youtube": {
+        "breaks": "sponsorblock",
+        "shows": [
+          {
+            "name": "Lazy Game Reviews - Official Playlist Pt. 1",
+            "playlists": [
+              {
+                "url": "https://www.youtube.com/playlist?list=PL3BC2ECCF73B81434",
+                "order": "playlist"
+              }
+            ]
+          },
+          {
+            "name": "LGR - Official Playlist Pt. 2",
+            "playlists": [
+              {
+                "url": "https://www.youtube.com/playlist?list=PLFE883AFC0FEC1358",
+                "order": "playlist"
+              }
+            ]
+          },
+          {
+            "name": "LGR Official Playlist Part 3",
+            "playlists": [
+              {
+                "url": "https://www.youtube.com/playlist?list=PLbBZM9aUMsjHoH9SLxbYjeP4iMtZZgPiY",
+                "order": "playlist"
+              }
+            ]
+          },
+          {
+            "name": "LGR Thrifts",
+            "playlists": [
+              {
+                "url": "https://www.youtube.com/playlist?list=PLbBZM9aUMsjEM76RFMofBZmDBuqNPnCdt",
+                "order": "playlist"
+              }
+            ]
+          }
+        ],
+        "title_strip": "\\s*/{2,}\\s*LGR*\\s*$",
+        "skip": []
+      },
+      "logomark": {
+        "type": "pixel",
+        "rows": [
+          ".....abbbbbbbbbbbbbbbbbbbba.....",
+          "...bbbcccccccccccccccccccdbbb...",
+          "..bbefggggggggggggggggggggfebb..",
+          ".bbhiggggggggggggggggggggggihbb.",
+          ".bfjggggggggggggggggggggggggjfb.",
+          "dbkggggggggggggggggggggggggggkbd",
+          "blggggggggggggggggggggggggggggbb",
+          "blggggggggggggggggggggggggggggbb",
+          "blggggggggggggggggggggggggggggbb",
+          "blggggggggggggggggggggggggggggbb",
+          "blggggggggggggggggggggggggggggbb",
+          "blgmmmmgggggggmmmmgggmmmmmmgggbb",
+          "blggmmgggggggmmggmmgggmmggmmggbb",
+          "blggmmggggggmmggggmgggmmggmmggbb",
+          "blggmmggggggmmggggggggmmggmmggbb",
+          "blggmmggggggmmggggggggmmmmmgggbb",
+          "blggmmggggggmmgmmmmgggmmgmmgggbb",
+          "blggmmggggggmmgggmmgggmmggmmggbb",
+          "blggmmgggmggmmgggmmgggmmggmmggbb",
+          "blggmmggmmgggmmggmmgggmmggmmggbb",
+          "blgmmmmmmmggggmmmgmggmmmggmmggbb",
+          "blggggggggggggggggggggggggggggbb",
+          "blggggggggggggggggggggggggggggbb",
+          "blggggggggggggggggggggggggggggbb",
+          "blggggggggggggggggggggggggggggbb",
+          "blggggggggggggggggggggggggggggbb",
+          "bbkggggggggggggggggggggggggggkbb",
+          ".bkggggggggggggggggggggggggggkb.",
+          ".bnkiggggggggggggggggggggggiknb.",
+          "..bnooggggggggggggggggggggoonb..",
+          "...bbbcccccccccccccccccccdbbb...",
+          ".....ebbbbbbbbbbbbbbbbbbbbe....."
+        ],
+        "palette": {
+          "a": "#17c01b",
+          "b": "#17cf17",
+          "c": "#15b419",
+          "d": "#17ba1c",
+          "e": "#17c21a",
+          "f": "#16be18",
+          "g": "#0b0f26",
+          "h": "#16c518",
+          "i": "#0b1526",
+          "j": "#0b1625",
+          "k": "#16bd18",
+          "l": "#15b119",
+          "m": "#00ff01",
+          "n": "#17ce17",
+          "o": "#15ac1a"
+        }
+      },
+      "ads": {
+        "years": [
+          1980,
+          1999
+        ],
+        "exclude": "jpcm|ytchannel1|japan|angels-egg|bandai|anime|adv-films|[\\u3040-\\u30ff\\u4e00-\\u9fff]",
+        "boost": "trailer|preview|coming.?attraction|opening.?to|vhs|theatrical|tv.?spot|movie|feature.?presentation|rental|blockbuster",
+        "boost_weight": 3
+      },
+      "bumps": [
+        {
+          "id": "lgr-001",
+          "show": "Lazy Game Reviews - Official Playlist Pt. 1",
+          "slides": [
+            {
+              "text": "wood grain texture."
+            },
+            {
+              "text": "maximum cozy."
+            },
+            {
+              "text": "lazy game reviews."
+            }
+          ]
+        },
+        {
+          "id": "lgr-002",
+          "show": "Lazy Game Reviews - Official Playlist Pt. 1",
+          "slides": [
+            {
+              "text": "let's look at some old software."
+            },
+            {
+              "text": "from a thrift store."
+            },
+            {
+              "text": "lazy game reviews."
+            }
+          ]
+        },
+        {
+          "id": "lgr-003",
+          "show": "Lazy Game Reviews - Official Playlist Pt. 1",
+          "slides": [
+            {
+              "text": "ibm compatibilities."
+            },
+            {
+              "text": "sound blaster 16."
+            },
+            {
+              "text": "lazy game reviews."
+            }
+          ]
+        },
+        {
+          "id": "lgr-004",
+          "show": "Lazy Game Reviews - Official Playlist Pt. 1",
+          "slides": [
+            {
+              "text": "unpacking a weird box."
+            },
+            {
+              "text": "found in a kentucky basement."
+            },
+            {
+              "text": "lazy game reviews."
+            }
+          ]
+        },
+        {
+          "id": "lgr-005",
+          "show": "Lazy Game Reviews - Official Playlist Pt. 1",
+          "slides": [
+            {
+              "text": "oddware detected."
+            },
+            {
+              "text": "proceed with caution."
+            },
+            {
+              "text": "lazy game reviews."
+            }
+          ]
+        },
+        {
+          "id": "lgr-006",
+          "show": "LGR - Official Playlist Pt. 2",
+          "slides": [
+            {
+              "text": "the 90s pc experience."
+            },
+            {
+              "text": "now streaming live."
+            },
+            {
+              "text": "lazy game reviews."
+            }
+          ]
+        },
+        {
+          "id": "lgr-007",
+          "show": "LGR - Official Playlist Pt. 2",
+          "slides": [
+            {
+              "text": "greetings."
+            },
+            {
+              "text": "clint here."
+            },
+            {
+              "text": "lazy game reviews."
+            }
+          ]
+        },
+        {
+          "id": "lgr-008",
+          "show": "LGR - Official Playlist Pt. 2",
+          "slides": [
+            {
+              "text": "simcity build journal."
+            },
+            {
+              "text": "things are going well."
+            },
+            {
+              "text": "(everything is on fire.)"
+            },
+            {
+              "text": "lazy game reviews."
+            }
+          ]
+        },
+        {
+          "id": "lgr-009",
+          "show": "LGR - Official Playlist Pt. 2",
+          "slides": [
+            {
+              "text": "floppy disk week."
+            },
+            {
+              "text": "hope the magnetic layer holds."
+            },
+            {
+              "text": "lazy game reviews."
+            }
+          ]
+        },
+        {
+          "id": "lgr-010",
+          "show": "LGR Thrifts",
+          "slides": [
+            {
+              "text": "checking out a thrift store find."
+            },
+            {
+              "text": "it smells like 1994."
+            },
+            {
+              "text": "lazy game reviews."
+            }
+          ]
+        }
+      ],
+      "network_bumps": [
+        {
+          "id": "lgrn-01",
+          "show": "LGR Official Playlist Part 3",
+          "slides": [
+            {
+              "text": "dos games."
+            },
+            {
+              "text": "midi music playing."
+            },
+            {
+              "text": "life is good."
+            },
+            {
+              "text": "lazy game reviews."
+            }
+          ]
+        },
+        {
+          "id": "lgrn-02",
+          "show": "LGR Official Playlist Part 3",
+          "slides": [
+            {
+              "text": "that's neat."
+            },
+            {
+              "text": "literally."
+            },
+            {
+              "text": "lazy game reviews."
+            }
+          ]
+        },
+        {
+          "id": "lgrn-03",
+          "show": "LGR Official Playlist Part 3",
+          "slides": [
+            {
+              "text": "plugging in a joystick"
+            },
+            {
+              "text": "via the game port."
+            },
+            {
+              "text": "lazy game reviews."
+            }
+          ]
+        },
+        {
+          "id": "lgrn-04",
+          "show": "LGR Official Playlist Part 3",
+          "slides": [
+            {
+              "text": "the manual was thicker than the game."
+            },
+            {
+              "text": "good times."
+            },
+            {
+              "text": "lazy game reviews."
+            }
+          ]
+        },
+        {
+          "id": "lgrn-05",
+          "show": "LGR Thrifts",
+          "slides": [
+            {
+              "text": "cleaning yellowed plastic."
+            },
+            {
+              "text": "retrobrite applied."
+            },
+            {
+              "text": "lazy game reviews."
+            }
+          ]
+        },
+        {
+          "id": "lgrn-06",
+          "show": "LGR Official Playlist Part 3",
+          "slides": [
+            {
+              "text": "testing out a weird peripheral."
+            },
+            {
+              "text": "it did not sell well."
+            },
+            {
+              "text": "lazy game reviews."
+            }
+          ]
+        },
+        {
+          "id": "lgrn-07",
+          "show": "Lazy Game Reviews - Official Playlist Pt. 1",
+          "slides": [
+            {
+              "text": "windows 95 startup chime."
+            },
+            {
+              "text": "cue nostalgia."
+            },
+            {
+              "text": "lazy game reviews."
+            }
+          ]
+        },
+        {
+          "id": "lgrn-08",
+          "show": "LGR Thrifts",
+          "slides": [
+            {
+              "text": "opening a big box pc game."
+            },
+            {
+              "text": "smell the cardboard."
+            },
+            {
+              "text": "lazy game reviews."
+            }
+          ]
+        },
+        {
+          "id": "lgrn-09",
+          "show": "Lazy Game Reviews - Official Playlist Pt. 1",
+          "slides": [
+            {
+              "text": "maximum frame rates."
+            },
+            {
+              "text": "on a 486."
+            },
+            {
+              "text": "lazy game reviews."
+            }
+          ]
+        },
+        {
+          "id": "lgrn-10",
+          "show": "LGR - Official Playlist Pt. 2",
+          "slides": [
+            {
+              "text": "you've been watching tech and games"
+            },
+            {
+              "text": "for hours."
+            },
+            {
+              "text": "time to check out some more oddware."
+            },
+            {
+              "text": "lazy game reviews."
             }
           ]
         }
