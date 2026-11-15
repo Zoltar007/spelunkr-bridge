@@ -3299,7 +3299,7 @@ def main():
     ap.add_argument("--size", default="640x480", help="output resolution, e.g. 640x480 or 854x480 (default 640x480)")
     ap.add_argument("--preset", default="veryfast", help="x264 preset (default veryfast)")
     ap.add_argument("--maxrate", type=int, default=2000, help="max video bitrate in kbps (default 2000)")
-    ap.add_argument("--hours", type=int, default=24, help="hours of guide data to publish (default 24)")
+    ap.add_argument("--hours", type=int, default=72, help="hours of guide data to publish (default 72)")
     ap.add_argument("--tuners", type=int, default=4,
                     help="for Plex: how many channels can be watched at once (default 4)")
     ap.add_argument("--lead", type=float, default=0.0,
