@@ -54,7 +54,7 @@ BROADCAST = "https://data.spelunkr.tv/"
 AUDIO_BASE = "https://audio.spelunkr.tv/bumps/"
 USER_AGENT = "spelunkr2jellyfin/2.0 (personal Jellyfin bridge)"
 ENGINE_VERSIONS = {1, 2, 5}      # scheduler versions this port understands
-REFRESH_SECONDS = 30 * 60        # re-check the lineup this often
+REFRESH_SECONDS = 60 * 60        # re-check the lineup this often
 KIDS_CHANNELS = {"saturday-morning", "toonertia", "latchkey-tv", "rubber-hose"}
 SPORTS_CHANNELS = {"suplex"}
 GOLD, PLATFORM_BG = "#ffd740", "#0a0e2a"
@@ -879,7 +879,7 @@ class Catalog:
         self._unplayable = None   # YouTube video id -> why it can't be played (age-restricted, removed...)
         self._refresh_lock = threading.Lock()
         self._refresh_soon = False
-        self._desc_tried = set()
+        self._desc_tried = {}  # vid -> timestamp of last attempt
         self._tape_cuts, self._tape_queue, self._tape_busy = {}, [], False   # archive.org commercial tapes
         self._subs_index = {}     # subtitle key -> spelunkr.tv's entry for a tape that has English subtitles
         self._subs_cues = OrderedDict()   # subtitle file -> its cues (the last few used)
@@ -1011,7 +1011,10 @@ class Catalog:
 
     def subtitles(self, ident, file):
         """English subtitle cues for one archive.org file (times in ms from the start of the file), or None."""
-        ent = self._subs_index.get(subtitle_key(ident, file))
+        key = subtitle_key(ident, file)
+        ent = self._subs_index.get(key)
+        if not ent and file:
+            ent = self._subs_index.get(ident)  # Fallback to base ID if compound key misses
         if not ent:
             return None
         name = ent["file"]
@@ -1377,7 +1380,16 @@ class Catalog:
         """Fill in missing descriptions in the background, 25 videos per yt-dlp call, saving as it goes."""
         path = os.path.join(CACHE_DIR, "custom__descriptions.json") if CACHE_DIR else None
         bad = self._load_unplayable()
-        todo = [v for v in dict.fromkeys(ids) if v not in self._descriptions and v not in self._desc_tried and v not in bad]
+
+        now = time.time()
+        # Only retry if it hasn't been tried yet, OR if its last attempt was more than 24 hours ago (86400 seconds)
+        todo = [
+            v for v in dict.fromkeys(ids) 
+            if v not in self._descriptions 
+            and v not in bad 
+            and (v not in self._desc_tried or now - self._desc_tried.get(v, 0) > 86400)
+        ]
+        
         if not todo or self._desc_busy:
             return
         self._desc_busy = True
@@ -1387,29 +1399,47 @@ class Catalog:
             try:
                 for i in range(0, len(todo), 25):
                     batch = todo[i:i + 25]
-                    out = subprocess.run([PYTHON, "-m", "yt_dlp", "--no-warnings", "--skip-download",
-                                          "--ignore-errors", "--print", "%(id)s\t%(description)j"]
-                                         + ["https://www.youtube.com/watch?v=" + v for v in batch],
-                                         capture_output=True, text=True, encoding="utf-8", timeout=900, **NO_WINDOW)
+                    cmd = [PYTHON, "-m", "yt_dlp", "--no-warnings", "--skip-download",
+                           "--ignore-errors", "--print", "%(id)s\t%(description)s"] \
+                          + ["https://youtube.com/watch?v=" + v for v in batch]
+                    log.debug("Running metadata fetch command: %s", " ".join(cmd))
+                    out = subprocess.run(cmd, capture_output=True, text=True, encoding="utf-8", timeout=900, **NO_WINDOW)
+                    
+                    stderr_output = (out.stderr or "").strip()
+                    if out.returncode != 0:
+                        if "Please sign in" in stderr_output or "403" in stderr_output:
+                            log.debug("yt-dlp description batch auth required: %s", stderr_output[:120])
+                        else:
+                            log.warning("yt-dlp description batch failed with code %d. Stderr: %s", 
+                                        out.returncode, stderr_output)
+
                     for line in out.stdout.splitlines():
                         vid, _, desc = line.partition("\t")
-                        try:
-                            self._descriptions[vid] = self._clean_description(json.loads(desc) or "")
+                        if vid and desc:
+                            self._descriptions[vid] = self._clean_description(desc)
                             got += 1
-                        except ValueError:
-                            pass
+                            # If successfully fetched, remove it from failed tracking
+                            self._desc_tried.pop(vid, None)
+                            
                     dropped = False                  # this pass also finds videos that can't be played at all
-                    for line in (out.stderr or "").splitlines():
+                    for line in stderr_output.splitlines():
                         m = re.search(r"ERROR: \[youtube\] ([\w-]{11}): (.+)", line)
                         if m and is_permanent_yt_error(m.group(2)):
                             self.mark_unplayable(m.group(1), m.group(2), refresh=False)
                             dropped = True
-                    self._desc_tried.update(batch)   # don't retry failures until the next start
+                            
+                    # Record the current timestamp for everything in this batch so it waits 24h before retrying
+                    current_time = time.time()
+                    for v in batch:
+                        self._desc_tried[v] = current_time
+                        
                     if dropped:
                         self.mark_unplayable_done()
                     if path:
                         with open(path, "w", encoding="utf-8") as f:
                             json.dump(self._descriptions, f)
+            except subprocess.TimeoutExpired:
+                log.warning("episode descriptions: yt-dlp batch timed out after 900 seconds.")
             except Exception as e:
                 log.warning("episode descriptions: %s", e)
             finally:
@@ -1430,8 +1460,8 @@ class Catalog:
                 if it["id"] not in marks or time.time() - marks[it["id"]]["t"] > 7 * 86400][:200]
         for vid in todo:
             prefix = __import__("hashlib").sha256(vid.encode()).hexdigest()[:4]
-            url = "https://sponsor.ajay.app/api/skipSegments/%s?categories=%s" % (
-                prefix, urllib.parse.quote(json.dumps(["intro"])))
+            base_url = "https://ajay.app"
+            url = base_url + prefix + "?service=youtube&categories=" + urllib.parse.quote(json.dumps(["intro"]))
             try:
                 data = json.loads(http_get(url, timeout=15).decode("utf-8"))
             except urllib.error.HTTPError as e:
@@ -1485,7 +1515,7 @@ class Catalog:
             if t.get("file") and not os.path.isabs(t["file"]):
                 # next to channels.json, else next to the script (the bundled music folder)
                 cands = [os.path.join(d, t["file"]) for d in (here, os.path.dirname(os.path.abspath(__file__)))]
-                t["file"] = next((p for p in cands if os.path.exists(p)), cands[0])
+                t["file"] = next((p for p in cands if os.path.exists(p)), t["file"])
             return t
         pool = self._ad_pool(ch["ads"]) if ch.get("ads") else []
         cfg_key = json.dumps(ch, sort_keys=True) + str(len(pool))
@@ -1783,12 +1813,12 @@ def build_ass(cues, start_ms, dur_ms, w, h, font, retro=False, inset=0.0):
             for j, s in enumerate(c["spans"]):
                 piece = c["en"][s["at"]:c["spans"][j + 1]["at"] if j + 1 < len(c["spans"]) else None]
                 color = "#ffffff" if _dark(s["color"]) else s["color"]   # the box is dark: keep it readable
-                parts.append("{\\c%s}%s" % (_ass_color(color), _ass_text_(piece)))
+                parts.append(r"{\c%s}%s" % (_ass_color(color), _ass_text_(piece)))
             text = "".join(parts)
         elif c["kind"] == "line":
             text = _ass_text_(c["en"])
         else:
-            text = "{\\c%s\\i1}%s" % (_ass_color(GOLD), _ass_text_(c["en"]))
+            text = r"{\c%s\i1}%s" % (_ass_color(GOLD), _ass_text_(c["en"]))
         events.append((max(0, c["t0"] - start_ms), min(t1, end_ms) - start_ms, text))
     if not events:
         return None
@@ -1807,7 +1837,8 @@ def build_ass(cues, start_ms, dur_ms, w, h, font, retro=False, inset=0.0):
         "MarginL, MarginR, MarginV, Encoding",
         # a solid box: each line of a two-line caption gets its own box, and see-through boxes would
         # show a darker strip where they overlap; solid ones merge into one shape, like TV captions
-        "Style: Default,%s,%d,&H00FFFFFF,&H00FFFFFF,&H00000000,&H00000000,-1,0,0,0,100,100,0,0,3,%d,0,2,%d,%d,%d,1"
+        # also force subtitle text colour to classic yellow
+        "Style: Default,%s,%d,&H0040D7FF,&H00FFFFFF,&H00000000,&H00000000,-1,0,0,0,100,100,0,0,3,%d,0,2,%d,%d,%d,1"
         % (font, size, max(2, size // 6), round(w * (0.05 + inset)), round(w * (0.05 + inset)),
            round(h * (0.06 + inset))),
         "", "[Events]",
@@ -1913,9 +1944,9 @@ def attribution(track):
     else:
         lic = ""
     if track.get("source"):      # longer credit: split over two lines so it stays readable
-        return ["♫ MUSIC: \"%s\" — %s" % (track.get("title") or "Untitled", track["artist"]),
+        return ['♫ MUSIC: "%s" — %s' % (track.get("title") or "Untitled", track["artist"]),
                 track["source"] + lic]
-    return ["♫ MUSIC: \"%s\" — %s%s" % (track.get("title") or "Untitled", track["artist"], lic)]
+    return ['♫ MUSIC: "%s" — %s%s' % (track.get("title") or "Untitled", track["artist"], lic)]
 
 
 TS_GAP = 0.12   # seconds of spacing between segments, so timestamps never step backwards at a hand-off
@@ -2117,12 +2148,13 @@ class _Segment:
 
 class Streamer:
     def __init__(self, catalog, ffmpeg, ffprobe, width, height, preset, maxrate, fonts, lead=0.0,
-                 hw=None, bug=True, static=True, vhs_cards=True, overscan=0.0):
+                 hw=None, bug=True, static=True, vhs_cards=True, overscan=0.0, vhs_blue_static=False):
         self.catalog = catalog
         self.ffmpeg, self.ffprobe = ffmpeg, ffprobe
         self.w, self.h = width, height
         self.preset, self.maxrate = preset, maxrate
         self.font, self.font_small, self.font_plain = fonts
+        self.vhs_blue_static = vhs_blue_static
         self.subs_state = {"on": False}                # draw spelunkr.tv's subtitles (main() turns this on;
                                                        # shared with sized() copies so turning off reaches all)
         # the subtitle font, and the folder libass loads it from (on Windows it asks the system instead:
@@ -2153,6 +2185,7 @@ class Streamer:
         self._yt = {}                                  # video id -> (good until, [stream urls])
         self._url_headers = {}                         # stream url -> the HTTP headers yt-dlp used for it
         self._yt_lock = threading.Lock()
+        self._retry_counts = {}
 
     def sized(self, channel):
         """This streamer with a channel's own picture settings: "size" (e.g. 854x480) and
@@ -2161,13 +2194,26 @@ class Streamer:
         w, h = self.w, self.h
         if channel.get("size"):
             w, h = (int(x) for x in str(channel["size"]).lower().split("x"))
-        crop = channel.get("fit") == "crop"
-        vhs = channel.get("vhs") or []
+        
+        has_size_arg = getattr(self, 'has_size_arg', False)
+        size_arg_val = getattr(self, 'size_arg', '640x480')
+        ignore_vhs = has_size_arg and size_arg_val and size_arg_val.lower() not in ("640x480", "854x480")
+        fit_arg = getattr(self, 'fit_arg', False)
+        
+        if not has_size_arg and fit_arg:
+            crop = False
+        else:
+            crop = channel.get("fit") == "crop"
+
+        vhs = [] if ignore_vhs else (channel.get("vhs") or [])
         vhs = self._vhs_base | frozenset(["shows", "cards", "ads"] if vhs is True else [vhs] if isinstance(vhs, str) else vhs)
         if (w, h, crop, vhs) == (self.w, self.h, self.crop, self.vhs):
             return self
         s = copy.copy(self)          # shares the learned startup times and caches
         s.w, s.h, s.crop, s.vhs = w, h, crop, vhs
+        s.fit_arg = fit_arg
+        s.has_size_arg = has_size_arg
+        s.size_arg = size_arg_val
         return s
 
     def _vhs_graph(self, src, dst):
@@ -2250,7 +2296,9 @@ class Streamer:
 
     def _out(self, ts_offset):
         rate = int(self.maxrate)
-        if self.hw and self.hw[0] == "nvenc":
+        if self.hw and self.hw[0] == "v4l2m2m":
+            video = ["-c:v", "h264_v4l2m2m", "-b:v", "%dk" % rate]
+        elif self.hw and self.hw[0] == "nvenc":
             video = ["-c:v", "h264_nvenc", "-preset", "p4", "-rc", "vbr", "-b:v", "%dk" % int(rate * 0.75),
                      "-maxrate", "%dk" % rate, "-bufsize", "%dk" % (rate * 2), "-g", "60"]
         elif self.hw and self.hw[0] == "amf":
@@ -2311,7 +2359,7 @@ class Streamer:
                 f.write(text)
         font = "fontfile=%s:" % ff_path(ff) if ff else ""
         return ("drawtext=%stextfile=%s:expansion=none:fontsize=%d:fontcolor=%s:borderw=%d:bordercolor=black:"
-                "y_align=font:x=%s:y=%s:enable='between(t,%.3f,%.3f)'"
+        "y_align=text:x=%s:y=%s:enable='between(t,%.3f,%.3f)'"
                 % (font, ff_path(path), size, ff_color(color), border, x, y, start, end))
 
     # -- one ffmpeg command per kind of segment ---------------------------------
@@ -2518,21 +2566,74 @@ class Streamer:
         W, H = self.w, self.h
         osd = max(20, H // 11)
         name = (channel.get("name") or "").upper()
-        texts = [self._text(tmp, "osd1.txt", "CH %s" % channel.get("dial", ""), osd, "#5dff5d",
-                            "w-text_w-w*0.06", "h*0.07", 0, duration + 1, border=3),
-                 self._text(tmp, "osd2.txt", name, max(12, osd // 2), "#5dff5d",
-                            "w-text_w-w*0.06", "h*0.07+%d" % int(osd * 1.3), 0, duration + 1, border=2),
-                 self._text(tmp, "osd3.txt", "ADJUSTING THE ANTENNA...", max(12, osd // 2), "#e8eaf0",
-                            "(w-text_w)/2", "h*0.86", 0, duration + 1, border=2, small=True)]
-        snow = ("noise=alls=100:allf=t+u,hue=s=0,eq=contrast=1.4:brightness=-0.05,boxblur=1:1,"
-                + ",".join(texts) + ",format=yuv420p" + self._tail())
-        fade = max(0.0, duration - 0.25)
-        return self._head() + [
-            "-re", "-f", "lavfi", "-i", "color=c=0x808080:s=%dx%d:r=30000/1001:d=%.3f" % (W, H, duration + 0.5),
-            "-f", "lavfi", "-i", "anoisesrc=color=white:amplitude=0.06:sample_rate=48000",
-            "-map", "0:v:0", "-map", "1:a:0", "-vf", snow,
-            "-af", "highpass=f=300,lowpass=f=7000,aformat=channel_layouts=stereo,afade=t=out:st=%.3f:d=0.25" % fade,
-            "-t", "%.3f" % duration] + self._out(0.0)
+        if self.vhs_blue_static:
+            t1 = self._text(tmp, "osd1.txt", "CH %s" % channel.get("dial", ""), osd, "#5dff5d", "w-text_w-w*0.06", "h*0.07", 0, duration + 1, border=3)
+            t2 = self._text(tmp, "osd2.txt", name, max(12, osd // 2), "#5dff5d", "w-text_w-w*0.06", "h*0.07+%d" % int(osd * 1.3), 0, duration + 1, border=2)
+            t3 = self._text(tmp, "osd3.txt", "ADJUSTING THE ANTENNA...", max(12, osd // 2), "#e8eaf0", "(w-text_w)/2", "h*0.86", 0, duration + 1, border=2, small=True)
+            blue_screen = f"{t1},{t2},{t3},scale={W}:{H},format=yuv420p{self._tail()}"
+            fade = max(0.0, duration - 0.25)
+            return self._head() + [
+                "-re", "-f", "lavfi", "-i", f"color=c=#0011bb:s={W}x{H}:r=30000/1001:d={duration + 0.5:.3f}",
+                "-f", "lavfi", "-i", "anoisesrc=color=pink:amplitude=0.02:sample_rate=48000",
+                "-map", "0:v:0", "-map", "1:a:0", 
+                "-vf", blue_screen,
+                "-af", f"highpass=f=400,lowpass=f=4000,aformat=channel_layouts=stereo,afade=t=out:st={fade:.3f}:d=0.25",
+                "-t", f"{duration:.3f}"] + self._out(0.0)
+        else:
+            texts = [self._text(tmp, "osd1.txt", "CH %s" % channel.get("dial", ""), osd, "#5dff5d",
+                                "w-text_w-w*0.06", "h*0.07", 0, duration + 1, border=3),
+                     self._text(tmp, "osd2.txt", name, max(12, osd // 2), "#5dff5d",
+                                "w-text_w-w*0.06", "h*0.07+%d" % int(osd * 1.3), 0, duration + 1, border=2),
+                     self._text(tmp, "osd3.txt", "ADJUSTING THE ANTENNA...", max(12, osd // 2), "#e8eaf0",
+                                "(w-text_w)/2", "h*0.86", 0, duration + 1, border=2, small=True)]
+            blur_r = max(1, H // 540)
+            snow = ("noise=alls=100:allf=t+u,hue=s=0,eq=contrast=1.4:brightness=-0.05,boxblur=%d:%d,"
+                    % (blur_r, blur_r)
+                    + ",".join(texts) + ",format=yuv420p" + self._tail())
+            fade = max(0.0, duration - 0.25)
+            return self._head() + [
+                "-re", "-f", "lavfi", "-i", "color=c=0x808080:s=%dx%d:r=30000/1001:d=%.3f" % (W, H, duration + 0.5),
+                "-f", "lavfi", "-i", "anoisesrc=color=white:amplitude=0.06:sample_rate=48000",
+                "-map", "0:v:0", "-map", "1:a:0", "-vf", snow,
+                "-af", "highpass=f=300,lowpass=f=7000,aformat=channel_layouts=stereo,afade=t=out:st=%.3f:d=0.25" % fade,
+                "-t", f"{duration:.3f}"] + self._out(0.0)
+
+    def unavailable_cmd(self, channel, duration, tmp):
+        """TV snow or blue screen with a channel number and 'PROGRAM UNAVAILABLE' when an item repeatedly fails."""
+        W, H = self.w, self.h
+        osd = max(20, H // 11)
+        name = (channel.get("name") or "").upper()
+        if self.vhs_blue_static:
+            t1 = self._text(tmp, "osd1.txt", "CH %s" % channel.get("dial", ""), osd, "#5dff5d", "w-text_w-w*0.06", "h*0.07", 0, duration + 1, border=3)
+            t2 = self._text(tmp, "osd2.txt", name, max(12, osd // 2), "#5dff5d", "w-text_w-w*0.06", "h*0.07+%d" % int(osd * 1.3), 0, duration + 1, border=2)
+            t3 = self._text(tmp, "osd3.txt", "PROGRAM UNAVAILABLE", max(12, osd // 2), "#e8eaf0", "(w-text_w)/2", "h*0.86", 0, duration + 1, border=2, small=True)
+            blue_screen = f"{t1},{t2},{t3},scale={W}:{H},format=yuv420p{self._tail()}"
+            fade = max(0.0, duration - 0.25)
+            return self._head() + [
+                "-re", "-f", "lavfi", "-i", f"color=c=#0011bb:s={W}x{H}:r=30000/1001:d={duration + 0.5:.3f}",
+                "-f", "lavfi", "-i", "anoisesrc=color=pink:amplitude=0.02:sample_rate=48000",
+                "-map", "0:v:0", "-map", "1:a:0", 
+                "-vf", blue_screen,
+                "-af", f"highpass=f=400,lowpass=f=4000,aformat=channel_layouts=stereo,afade=t=out:st={fade:.3f}:d=0.25",
+                "-t", f"{duration:.3f}"] + self._out(0.0)
+        else:
+            texts = [self._text(tmp, "osd1.txt", "CH %s" % channel.get("dial", ""), osd, "#5dff5d",
+                                "w-text_w-w*0.06", "h*0.07", 0, duration + 1, border=3),
+                     self._text(tmp, "osd2.txt", name, max(12, osd // 2), "#5dff5d",
+                                "w-text_w-w*0.06", "h*0.07+%d" % int(osd * 1.3), 0, duration + 1, border=2),
+                     self._text(tmp, "osd3.txt", "PROGRAM UNAVAILABLE", max(12, osd // 2), "#e8eaf0",
+                                "(w-text_w)/2", "h*0.86", 0, duration + 1, border=2, small=True)]
+            blur_r = max(1, H // 540)
+            snow = ("noise=alls=100:allf=t+u,hue=s=0,eq=contrast=1.4:brightness=-0.05,boxblur=%d:%d,"
+                    % (blur_r, blur_r)
+                    + ",".join(texts) + ",format=yuv420p" + self._tail())
+            fade = max(0.0, duration - 0.25)
+            return self._head() + [
+                "-re", "-f", "lavfi", "-i", "color=c=0x808080:s=%dx%d:r=30000/1001:d=%.3f" % (W, H, duration + 0.5),
+                "-f", "lavfi", "-i", "anoisesrc=color=white:amplitude=0.06:sample_rate=48000",
+                "-map", "0:v:0", "-map", "1:a:0", "-vf", snow,
+                "-af", "highpass=f=300,lowpass=f=7000,aformat=channel_layouts=stereo,afade=t=out:st=%.3f:d=0.25" % fade,
+                "-t", f"{duration:.3f}"] + self._out(0.0)
 
     # -- the live loop ------------------------------------------------------------
 
@@ -2558,7 +2659,7 @@ class Streamer:
                 urls = self.youtube_urls(it["id"])
                 return self.clip_cmd(urls[0], seek, remaining, ts_offset,
                                      audio_url=urls[1] if len(urls) > 1 else None, bug=bug, vhs=vhs)
-            subs = self._subs_file(it.get("id"), it.get("file"), seek, remaining, tmp)
+            subs = self._subs_file(it.get("id"), it.get("file") or it.get("mp4"), seek, remaining, tmp)
             return self.clip_cmd(self.catalog.item_url(it), seek, remaining, ts_offset, bug=bug, vhs=vhs, subs=subs)
         if kind == "ad":
             s = e["slice"]
@@ -2685,11 +2786,25 @@ class Streamer:
                         warmup = max(self.startup.values()) + 1.5
                         if time.monotonic() - cur.first >= cur.dur - warmup:
                             skip = behind if behind and behind > 0.75 else 0.0
-                            if skip:                # catch up by starting the next segment that much later
+                            if skip:
                                 log.info("[%s] catching up %.1fs", cid, skip)
                                 behind -= skip
-                            sched, ts = cur.sched + int((cur.dur + skip) * 1000), cur.ts + cur.dur + TS_GAP
-                            nxt = _Pending(lambda s=sched, x=ts: self._launch(cid, s, x))
+                            
+                            # CHECK IF THIS SLOT IS IN ERROR/UNAVAILABLE MODE
+                            if hasattr(self, '_retry_counts') and cur.sched in self._retry_counts:
+                                def prewarm_unavail(sched=cur.sched, ts=cur.ts + cur.dur + TS_GAP):
+                                    c_time = now_ms()
+                                    s_end = self._slot_ends.get(sched, c_time + 30000)
+                                    rem = (s_end - c_time) / 1000.0
+                                    b = min(max(rem, 1.0), 30.0)
+                                    ch = self.catalog.channel(cid) or {"id": cid, "name": cid}
+                                    tmp = tempfile.mkdtemp(prefix="spelunkr-")
+                                    c = self.unavailable_cmd(ch, b, tmp)
+                                    return _Segment(c, tmp, sched, b, ts, "card")
+                                nxt = _Pending(prewarm_unavail)
+                            else:
+                                sched, ts = cur.sched + int((cur.dur + skip) * 1000), cur.ts + cur.dur + TS_GAP
+                                nxt = _Pending(lambda s=sched, x=ts: self._launch(cid, s, x))
                 if stop.is_set():
                     return
                 code = cur.proc.wait()
@@ -2699,8 +2814,9 @@ class Streamer:
                 cur.cleanup()
                 if code == 0 and cur.sent:
                     yt_retries = 0
-                    cur, nxt = ((nxt.get() if nxt else None)
-                                or self._launch(cid, cur.sched + int(cur.dur * 1000), cur.ts + cur.dur + TS_GAP)), None
+                    # self._retry_counts.clear()  <-- Commented out so retries accumulate correctly
+                    cur = (nxt.get() if nxt else None) or self._launch(cid, cur.sched + int(cur.dur * 1000), cur.ts + cur.dur + TS_GAP)
+                    nxt = None
                     switched = time.monotonic()
                     continue
                 # this segment broke
@@ -2741,10 +2857,35 @@ class Streamer:
                     cur = self._launch(cid, None, cur.ts + played + TS_GAP)
                     switched = time.monotonic()
                     continue
-                # colour bars for the rest of that tape (20s at most); the next launch rejoins the live schedule
-                bars = min(max(cur.dur - played, 1.0), 20.0)
-                cur = _Segment(self.standby_cmd(bars, cur.ts + played + TS_GAP), None,
-                               cur.sched + int(played * 1000), bars, cur.ts + played + TS_GAP, "card")
+                # Check retry count for this specific schedule timestamp
+                retry_key = cur.sched
+                retries = self._retry_counts.get(retry_key, 0) + 1
+                self._retry_counts[retry_key] = retries  
+                
+                failed_dur = getattr(cur, 'original_dur', cur.dur)
+                current_time = now_ms()
+                slot_end_time = cur.sched + int(failed_dur * 1000)
+                
+                # Calculate the exact remaining time left in this show's timeslot
+                remaining_slot_time = (slot_end_time - current_time) / 1000.0
+                bars = max(remaining_slot_time, 1.0)
+                
+                ch_obj = self.catalog.channel(cid) or {"id": cid, "name": cid}
+                tmp_unavail = tempfile.mkdtemp(prefix="spelunkr-")
+                cmd = self.unavailable_cmd(ch_obj, bars, tmp_unavail)
+                
+                # Once this continuous card finishes, move on to the next item in the schedule
+                log.warning("[%s] segment failed, holding 'PROGRAM UNAVAILABLE' for the remainder of the timeslot (%.1fs)...", cid, bars)
+                self._retry_counts.pop(retry_key, None)
+                
+                cur = _Segment(cmd, tmp_unavail, cur.sched, bars, cur.ts + TS_GAP, "card")
+                
+                if nxt:
+                    nxt.kill()
+                    nxt = None
+                # Standard pre-warmup takes over for whatever is scheduled after this timeslot ends
+                nxt = _Pending(lambda s=None, x=cur.ts + bars + TS_GAP: self._launch(cid, s, x))
+                
                 switched = time.monotonic()
         finally:
             for s in (cur, nxt):
@@ -2932,8 +3073,9 @@ def build_xmltv(catalog, base, hours_back=2, hours_ahead=72):
                 out.append('    <icon src="https://i.ytimg.com/vi/%s/hqdefault.jpg"/>' % e(it["id"]))
                 out.append("    <url>https://www.youtube.com/watch?v=%s</url>" % e(it["id"]))
             else:
-                out.append('    <icon src="https://archive.org/services/img/%s"/>' % e(urllib.parse.quote(it["id"])))
-                out.append("    <url>https://archive.org/details/%s</url>" % e(urllib.parse.quote(it["id"])))
+                item_id = it.get("id", "")
+                out.append('    <icon src="https://archive.org/services/img/%s"/>' % e(urllib.parse.quote(str(item_id))))
+                out.append("    <url>https://archive.org/details/%s</url>" % e(urllib.parse.quote(str(item_id))))
             if det.get("season") or det.get("episode"):
                 s, ep = det.get("season"), det.get("episode")
                 out.append('    <episode-num system="onscreen">%s%s</episode-num>'
@@ -2989,7 +3131,7 @@ class Handler(BaseHTTPRequestHandler):
     catalog = None
     streamer = None
     public_url = None
-    hours_ahead = 72
+    hours_ahead = 24
     tuners = 4
     device_id = "5EE1B0B0"
     _logo_cache = {}
@@ -3078,6 +3220,8 @@ def hw_args(hw):
     if not hw or not hw[1]:
         return []      # Windows encoders take normal frames and open the GPU themselves
     kind, dev = hw
+    if kind == "v4l2m2m":
+        return []
     if kind == "qsv":
         return ["-init_hw_device", "vaapi=va:%s" % dev, "-init_hw_device", "qsv=hw@va", "-filter_hw_device", "hw"]
     return ["-vaapi_device", dev]
@@ -3087,9 +3231,12 @@ def hw_tail(hw):
     """End of every video filter chain: hand frames to the GPU when encoding there."""
     if not hw:
         return ""
+    kind = hw[0]
+    if kind == "v4l2m2m":
+        return ",format=yuv420p"
     if not hw[1]:
         return ",format=nv12"
-    return ",format=nv12,hwupload=extra_hw_frames=64" if hw[0] == "qsv" else ",format=nv12,hwupload"
+    return ",format=nv12,hwupload=extra_hw_frames=64" if kind == "qsv" else ",format=nv12,hwupload"
 
 
 HW_NAMES = {"qsv": "Intel Quick Sync", "vaapi": "VAAPI", "nvenc": "NVIDIA NVENC", "amf": "AMD AMF"}
@@ -3105,26 +3252,31 @@ def probe_hw(ffmpeg, mode, device):
         kinds = ["nvenc", "qsv", "amf"] if mode == "auto" else [mode]
         devices = [None]
     else:
-        kinds = ["qsv", "vaapi"] if mode == "auto" else [mode]
+        if mode == "auto":
+            kinds = ["qsv", "vaapi"]
+        else:
+            kinds = [mode]
         devices = [device] if device != "auto" else sorted(
             os.path.join("/dev/dri", d) for d in (os.listdir("/dev/dri") if os.path.isdir("/dev/dri") else [])
             if d.startswith("renderD"))
+        if not devices:
+            devices = [None]
     for dev in devices:
         if dev and not os.path.exists(dev):
             continue
         for kind in kinds:
             hw = (kind, dev)
+            test_vf = hw_tail(hw).lstrip(",")
             test = ([ffmpeg, "-hide_banner", "-loglevel", "error", "-nostdin"] + hw_args(hw)
-                    + ["-f", "lavfi", "-i", "testsrc=size=640x480:rate=30", "-t", "1", "-vf", hw_tail(hw).lstrip(","),
-                       "-c:v", "h264_%s" % kind, "-f", "null", "-"])
+                    + ["-f", "lavfi", "-i", "testsrc=size=640x480:rate=30", "-t", "1"]
+                    + (["-vf", test_vf] if test_vf else [])
+                    + ["-c:v", "h264_%s" % kind, "-f", "null", "-"])
             try:
                 out = subprocess.run(test, capture_output=True, text=True, timeout=30, **NO_WINDOW)
                 if out.returncode == 0:
                     return hw
-                log.info("GPU test: %s on %s didn't work (%s)", kind, dev,
-                         " | ".join((out.stderr or "").strip().splitlines()[-1:]))
-            except Exception as e:
-                log.info("GPU test: %s on %s failed: %s", kind, dev, e)
+            except Exception:
+                pass
     return None
 
 
@@ -3147,7 +3299,7 @@ def main():
     ap.add_argument("--size", default="640x480", help="output resolution, e.g. 640x480 or 854x480 (default 640x480)")
     ap.add_argument("--preset", default="veryfast", help="x264 preset (default veryfast)")
     ap.add_argument("--maxrate", type=int, default=2000, help="max video bitrate in kbps (default 2000)")
-    ap.add_argument("--hours", type=int, default=72, help="hours of guide data to publish (default 72)")
+    ap.add_argument("--hours", type=int, default=24, help="hours of guide data to publish (default 24)")
     ap.add_argument("--tuners", type=int, default=4,
                     help="for Plex: how many channels can be watched at once (default 4)")
     ap.add_argument("--lead", type=float, default=0.0,
@@ -3167,7 +3319,9 @@ def main():
     ap.add_argument("--now", action="store_true", help="print the schedule on every channel from now (or --at) and exit")
     ap.add_argument("--at", type=int, help="with --now: a time in epoch milliseconds")
     ap.add_argument("--dump", type=int, default=1, help="with --now: how many entries to print per channel")
-    ap.add_argument("--hwaccel", choices=["auto", "qsv", "vaapi", "nvenc", "amf", "none"], default="auto",
+    
+    default_hwaccel = "auto"
+    ap.add_argument("--hwaccel", choices=["auto", "qsv", "vaapi", "nvenc", "amf", "none"], default=default_hwaccel,
                     help="encode on the GPU: Intel Quick Sync (qsv), VAAPI (Linux), NVIDIA (nvenc) or AMD (amf, "
                          "Windows). auto tries what fits this OS, then falls back to the CPU")
     ap.add_argument("--gpu-device", default="auto",
@@ -3177,6 +3331,8 @@ def main():
                     help="for CRTs that hide the edges of the picture: move the corner logo and subtitles this "
                          "many percent further in (e.g. 8; default 0)")
     ap.add_argument("--no-static", action="store_true", help="don't show TV snow while a channel tunes in")
+    ap.add_argument("--vhs-blue-static", action="store_true",
+                    help="use retro blue VHS screen instead of standard TV snow during channel tune-in")
     ap.add_argument("--no-vhs-cards", action="store_true", help="draw bump cards clean instead of as worn VHS")
     ap.add_argument("--no-subtitles", action="store_true",
                     help="don't draw spelunkr.tv's English subtitles on the tapes that have them")
@@ -3189,7 +3345,13 @@ def main():
                          "as with the static builds often used on seedboxes")
     ap.add_argument("--log-file", help="also write the log to this file (kept under ~10 MB)")
     ap.add_argument("-v", "--verbose", action="store_true")
+    ap.add_argument("--fit", action="store_true",
+                    help="use fit instead of crop when --size is not defined")
     a = ap.parse_args()
+
+    has_size_arg = any(arg == "--size" for arg in sys.argv) or any(arg.startswith("--size=") for arg in sys.argv)
+    if has_size_arg and a.size != "640x480":
+        a.vhs_blue_static = True
 
     handlers = []
     if sys.stderr:                       # pythonw.exe has no console
@@ -3264,7 +3426,11 @@ def main():
     Handler.catalog = catalog
     Handler.streamer = Streamer(catalog, a.ffmpeg, a.ffprobe, w, h, a.preset, a.maxrate, fonts, a.lead,
                                 hw=hw, bug=not a.no_logo_bug, static=not a.no_static,
-                                vhs_cards=not a.no_vhs_cards, overscan=a.overscan)
+                                vhs_cards=not a.no_vhs_cards, overscan=a.overscan,
+                                vhs_blue_static=a.vhs_blue_static)
+    Handler.streamer.fit_arg = a.fit
+    Handler.streamer.has_size_arg = has_size_arg
+    Handler.streamer.size_arg = a.size
     if not a.no_subtitles:
         if ffmpeg_has_filter(a.ffmpeg, "ass"):
             Handler.streamer.subs_state["on"] = True
