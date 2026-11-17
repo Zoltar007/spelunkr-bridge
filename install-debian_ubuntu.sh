@@ -89,7 +89,7 @@ fi
 
 # Prompt for stream resolution (--size)
 printf "\n==> Select stream resolution:\n"
-printf "  1) Original (640x480)\n"
+printf "  1) Original 480p (640x480)\n"
 printf "  2) Widescreen 480p (854x480)\n"
 printf "  3) 720p (1280x720)\n"
 printf "  4) 1080p (1920x1080)\n"
@@ -105,8 +105,14 @@ esac
 say "Selected resolution: $SIZE_ARG"
 
 
-# Prompt for optional arguments (--no-logo-bug, --no-vhs-cards, --overscan, --fit)
+# Prompt for optional arguments (--no-logo-bug, --no-vhs-cards, --yellow-subtitles, --overscan, --fit)
 EXTRA_ARGS=""
+
+printf "\n==> Would you like to use classic yellow subtitles instead of the default white? [y/N]: "
+read -r yellow_subs_choice </dev/tty
+case "$yellow_subs_choice" in
+    [yY][eE][sS]|[yY]) EXTRA_ARGS="$EXTRA_ARGS --yellow-subtitles" ;;
+esac
 
 printf "\n==> Would you like to disable the on-screen channel logo bug? [y/N]: "
 read -r logo_choice </dev/tty
@@ -126,7 +132,7 @@ case "$EXTRA_ARGS" in
 esac
 
 if [ "$SIZE_ARG" = "640x480" ] && [ "$HAS_LOGO_BUG" = false ]; then
-    printf "\n==> Would you like to enable overscan (CRT simulation framing) for Original (640x480)? [y/N]: "
+    printf "\n==> Would you like to enable overscan (CRT simulation framing) for Original 480p (640x480)? [y/N]: "
     read -r overscan_choice </dev/tty
     case "$overscan_choice" in
         [yY][eE][sS]|[yY]) EXTRA_ARGS="$EXTRA_ARGS --overscan" ;;

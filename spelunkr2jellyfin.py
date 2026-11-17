@@ -1792,7 +1792,7 @@ def _dark(hex_color):
     return 0.2126 * lin[0] + 0.7152 * lin[1] + 0.0722 * lin[2] < 0.1
 
 
-def build_ass(cues, start_ms, dur_ms, w, h, font, retro=False, inset=0.0):
+def build_ass(cues, start_ms, dur_ms, w, h, font, retro=False, inset=0.0, yellow=False):
     """An .ass subtitle file for one clip: the cues that fall between start_ms and start_ms + dur_ms
     of the tape, timed from the clip's first frame. Like the website, one caption at a time: white on a
     dark box near the bottom; "beat" and "mark" captions in gold italics. None if nothing is said.
@@ -1838,9 +1838,9 @@ def build_ass(cues, start_ms, dur_ms, w, h, font, retro=False, inset=0.0):
         # a solid box: each line of a two-line caption gets its own box, and see-through boxes would
         # show a darker strip where they overlap; solid ones merge into one shape, like TV captions
         # also force subtitle text colour to classic yellow
-        "Style: Default,%s,%d,&H0040D7FF,&H00FFFFFF,&H00000000,&H00000000,-1,0,0,0,100,100,0,0,3,%d,0,2,%d,%d,%d,1"
-        % (font, size, max(2, size // 6), round(w * (0.05 + inset)), round(w * (0.05 + inset)),
-           round(h * (0.06 + inset))),
+        "Style: Default,%s,%d,%s,&H00FFFFFF,&H00000000,&H00000000,-1,0,0,0,100,100,0,0,3,%d,0,2,%d,%d,%d,1"
+        % (font, size, "&H0040D7FF" if yellow else "&H00FFFFFF", max(2, size // 6),
+           round(w * (0.05 + inset)), round(w * (0.05 + inset)), round(h * (0.06 + inset))),
         "", "[Events]",
         "Format: Layer, Start, End, Style, Name, MarginL, MarginR, MarginV, Effect, Text",
     ] + ["Dialogue: 0,%s,%s,Default,,0,0,0,,%s" % (ts(a), ts(b), t) for a, b, t in events]) + "\n"
@@ -2148,13 +2148,15 @@ class _Segment:
 
 class Streamer:
     def __init__(self, catalog, ffmpeg, ffprobe, width, height, preset, maxrate, fonts, lead=0.0,
-                 hw=None, bug=True, static=True, vhs_cards=True, overscan=0.0, vhs_blue_static=False):
+               hw=None, bug=True, static=True, vhs_cards=True, overscan=0.0, vhs_blue_static=False,
+               yellow_subtitles=False):
         self.catalog = catalog
         self.ffmpeg, self.ffprobe = ffmpeg, ffprobe
         self.w, self.h = width, height
         self.preset, self.maxrate = preset, maxrate
         self.font, self.font_small, self.font_plain = fonts
         self.vhs_blue_static = vhs_blue_static
+        self.yellow_subtitles = yellow_subtitles       # for optional yellow text coloured subtitles
         self.subs_state = {"on": False}                # draw spelunkr.tv's subtitles (main() turns this on;
                                                        # shared with sized() copies so turning off reaches all)
         # the subtitle font, and the folder libass loads it from (on Windows it asks the system instead:
@@ -2370,7 +2372,7 @@ class Streamer:
             return None
         cues = self.catalog.subtitles(ident, file)
         text = build_ass(cues, int(seek * 1000), int(duration * 1000), self.w, self.h, self.sub_font,
-                         retro=self.sub_retro, inset=self.inset) if cues else None
+                         retro=self.sub_retro, inset=self.inset, yellow=self.yellow_subtitles) if cues else None
         if not text:
             return None
         path = os.path.join(tmp, "subtitles.ass")
@@ -3336,6 +3338,8 @@ def main():
     ap.add_argument("--no-vhs-cards", action="store_true", help="draw bump cards clean instead of as worn VHS")
     ap.add_argument("--no-subtitles", action="store_true",
                     help="don't draw spelunkr.tv's English subtitles on the tapes that have them")
+    ap.add_argument("--yellow-subtitles", action="store_true",
+                    help="draw subtitle text in classic yellow instead of white")
     ap.add_argument("--ffmpeg", default=find_tool("ffmpeg"),
                     help="ffmpeg to use (default: on PATH, else Jellyfin's copy on Windows)")
     ap.add_argument("--ffprobe", default=find_tool("ffprobe"))
@@ -3427,7 +3431,8 @@ def main():
     Handler.streamer = Streamer(catalog, a.ffmpeg, a.ffprobe, w, h, a.preset, a.maxrate, fonts, a.lead,
                                 hw=hw, bug=not a.no_logo_bug, static=not a.no_static,
                                 vhs_cards=not a.no_vhs_cards, overscan=a.overscan,
-                                vhs_blue_static=a.vhs_blue_static)
+                                vhs_blue_static=a.vhs_blue_static,
+                                yellow_subtitles=a.yellow_subtitles)
     Handler.streamer.fit_arg = a.fit
     Handler.streamer.has_size_arg = has_size_arg
     Handler.streamer.size_arg = a.size
